@@ -4,10 +4,10 @@
 
 ### Publications
 
->[Collision-free Navigation of Human-centered Robots via Markov Games
+[Collision-free Navigation of Human-centered Robots via Markov Games
 ](https://ieeexplore.ieee.org/abstract/document/9196810?casa_token=EavlpvoqvCAAAAAA:BbJA0vSssF5G9dSvBjzsMcGsv26ywdYcYu0cjDXmLCuPjh8UjVIyS_RraclvroIFhDgnEhCP)
-> <strong>Guo Ye*</strong>, Qinjie Lin*, Tzung-Han Juang, Han Liu, 
-> ICRA, 2020 
+<p> style="font-size:11px"> <strong>Guo Ye*</strong>, Qinjie Lin*, Tzung-Han Juang, Han Liu</p>
+<p> ICRA, 2020 </p>
 <img src="images/mobile_sim.png?raw=true"/>
 
 ---
