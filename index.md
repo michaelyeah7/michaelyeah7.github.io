@@ -3,10 +3,10 @@
 ---
 
 ### Publications
-[RoboFlow: a Data-centric Workflow ManagementSystem for Developing AI-enhanced Robots]
+[RoboFlow: a Data-centric Workflow ManagementSystem for Developing AI-enhanced Robots](https://openreview.net/pdf?id=X5s0D3E-skk)
 <p>Qinjie Lin*, <strong>Guo Ye*</strong>, Jiayi Wang, Han Liu</p>
 <p>5th Annual Conference on Robot Learning (CoRL 2021) Blue Sky oral session</p>
-<img src=roboflow_arch-10.pdf?raw=true">
+<img src="images/roboflow_arch-10.pdf?raw=true">
 ---
 
 [Collision-free Navigation of Human-centered Robots via Markov Games
@@ -26,7 +26,7 @@
 <p> He, Shiyuan, <strong>Guo Ye</strong>, Mengqiu Hu, Yang Yang, Fumin Shen, Heng Tao Shen, and Xuelong Li</p>
 <p>Neurocomputing 282 (2018): 32-41</p>
 <img src="images/neurocomputing.pdf?raw=true"/>
----
+
 
 
 <!-- <p style="font-size:11px">Page template forked from <a href="https://github.com/evanca/quick-portfolio">evanca</a></p> -->
