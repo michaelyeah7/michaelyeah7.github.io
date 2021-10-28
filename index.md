@@ -3,6 +3,11 @@
 ---
 
 ### Publications
+[RoboFlow: a Data-centric Workflow ManagementSystem for Developing AI-enhanced Robots]
+<p>Qinjie Lin*, <strong>Guo Ye*</strong>, Jiayi Wang, Han Liu</p>
+<p>5th Annual Conference on Robot Learning (CoRL 2021) Blue Sky oral session</p>
+<img src=roboflow_arch-10.pdf?raw=true">
+---
 
 [Collision-free Navigation of Human-centered Robots via Markov Games
 ](https://ieeexplore.ieee.org/abstract/document/9196810?casa_token=EavlpvoqvCAAAAAA:BbJA0vSssF5G9dSvBjzsMcGsv26ywdYcYu0cjDXmLCuPjh8UjVIyS_RraclvroIFhDgnEhCP)
@@ -18,14 +23,11 @@
 
 ---
 [Learning binary codes with local and inner data structure](https://www.sciencedirect.com/science/article/pii/S0925231217318325)
-<p> He, Shiyuan, <strong>Guo Ye<strong>, Mengqiu Hu, Yang Yang, Fumin Shen, Heng Tao Shen, and Xuelong Li</p>
+<p> He, Shiyuan, <strong>Guo Ye</strong>, Mengqiu Hu, Yang Yang, Fumin Shen, Heng Tao Shen, and Xuelong Li</p>
 <p>Neurocomputing 282 (2018): 32-41</p>
 <img src="images/neurocomputing.pdf?raw=true"/>
 ---
 
 
-
-
----
 <!-- <p style="font-size:11px">Page template forked from <a href="https://github.com/evanca/quick-portfolio">evanca</a></p> -->
 <!-- Remove above link if you don't want to attibute -->
