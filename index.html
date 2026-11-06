@@ -67,6 +67,9 @@ nav .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px
 .who img{width:52px;height:52px;border-radius:50%;object-fit:cover;border:1px solid var(--rule)}
 .who div{line-height:1.35}
 .who b{font-family:var(--display);font-weight:650;font-size:17px}
+.who > div{min-width:0}
+.tagline{display:inline;font-size:14px;color:var(--muted)}
+.tagline i{font-style:normal;color:var(--rule);margin:0 8px}
 .cta{display:flex;gap:10px;flex-wrap:wrap;margin-top:30px}
 .btn{display:inline-flex;align-items:center;gap:8px;padding:10px 16px;border:1px solid var(--rule);border-radius:999px;text-decoration:none;font-size:14px;font-weight:500;background:var(--paper)}
 .btn:hover{border-color:var(--ink)}
@@ -257,7 +260,7 @@ footer small{font-size:12.5px;opacity:.6}
     <div>
       <div class="who">
         <img src="media/me.jpg" alt="Portrait of Guo Ye" width="52" height="52">
-        <div><b>Guo Ye</b><br><span class="muted" style="font-size:14px">Data Scientist · DREAM Cloud Lab, Northwestern University</span></div>
+        <div><b>Guo Ye</b><br><span class="tagline"><span>AI for Science</span><i aria-hidden="true">|</i><span>Leading DREAM Brain, the AI scientist of Northwestern's DREAM Cloud Lab</span><i aria-hidden="true">|</i><span>AI × Biology × Robotics</span></span></div>
       </div>
       <h1>I build <em>AI scientists</em> that design experiments, run them on lab robots, and improve themselves from every result.</h1>
       <p class="lede">I work where <strong>AI, biology and robotics</strong> meet. I lead <strong>DREAM Brain</strong>, the AI scientist of Northwestern's DREAM Cloud Lab for protein engineering, built for recursive self-improvement (RSI). Before that I built tactile robot foundation models and the systems that take robot learning from notebook to deployment.</p>
