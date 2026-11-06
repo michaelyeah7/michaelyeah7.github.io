@@ -100,9 +100,9 @@ loadData('data/adaptation-map.json').then(plans=>{
   for(const plan of plans)plansByAward.set(plan.award_id,plan);
   showValidation(roster?.[selected]);
 }).catch(()=>{el('validation-plan').hidden=true});
-if(!el('embedded-data')&&location.hostname==='michaelyeah7.github.io'&&location.pathname.startsWith('/pcl-bench/')){
+if(!el('embedded-data')&&location.hostname==='michaelyeah7.github.io'&&location.pathname.startsWith('/autonomous-lab-bench/')){
   const repo=el('published-repo');
-  repo.href='https://github.com/michaelyeah7/pcl-bench';
+  repo.href='https://github.com/michaelyeah7/autonomous-lab-bench';
   repo.hidden=false;
 }
 function renderReplay(rows){
@@ -140,3 +140,58 @@ loadData('data/summit-replay.json').then(({rows})=>{
   renderReplay(rows);
   el('replay-case').onchange=()=>renderReplay(rows);
 }).catch(()=>{el('replay-metrics').textContent='Open the replay results file for the per-case comparison.'});
+const filmNames={all:'All clips',cell:'Full cycle',machines:'Machines',routes:'Routes',robots:'Robots',robust:'Robustness',speed:'Speed',method:'Method',mobile:'Mobile'};
+loadData('data/clips.json').then(({clips,readouts})=>{
+  const grid=el('film-grid'),filters=el('film-filters'),player=el('film-player');
+  if(!grid||!clips||!clips.length)return;
+  el('film-readouts').replaceChildren(...(readouts||[]).map(r=>{
+    const d=document.createElement('div'),v=document.createElement('strong'),lab=document.createElement('span');
+    v.textContent=r.value;
+    if(r.unit){const u=document.createElement('em');u.textContent=r.unit;v.append(u)}
+    lab.textContent=String(r.label||'').toUpperCase();d.append(v,lab);
+    if(r.note){const n=document.createElement('small');n.textContent=r.note;d.append(n)}
+    return d}));
+  let active='all',current=null;
+  function show(c,autoplay){
+    current=c.id;
+    el('film-id').textContent=c.id;
+    el('film-title').textContent=c.title;
+    el('film-dur').textContent=c.seconds?c.seconds.toFixed(1)+' S':'';
+    el('film-caption').textContent=c.caption||'';
+    const chips=[];
+    if(c.robot)chips.push(['',c.robot]);
+    if(c.route)chips.push(['','route: '+c.route]);
+    for(const d of c.dr||[])chips.push(['dr','randomised: '+d]);
+    el('film-chips').replaceChildren(...chips.map(([cls,t])=>{const s=document.createElement('span');if(cls)s.className=cls;s.textContent=t;return s}));
+    player.poster='media/'+c.id+'.jpg';
+    player.setAttribute('aria-label',c.title+' - rendered simulation clip');
+    player.src='media/'+c.id+'.mp4';
+    for(const b of grid.children)b.setAttribute('aria-current',b.dataset.id===c.id?'true':'false');
+    if(autoplay)player.play().catch(()=>{});
+  }
+  function render(){
+    const list=clips.filter(c=>active==='all'||c.section===active);
+    el('film-count').textContent=list.length+' clip'+(list.length===1?'':'s')+(active==='all'?' in eight groups':' \u00b7 '+(filmNames[active]||active));
+    grid.replaceChildren(...list.map(c=>{
+      const b=document.createElement('button');b.type='button';b.className='filmcard';b.dataset.id=c.id;
+      b.setAttribute('aria-current',c.id===current?'true':'false');
+      const img=document.createElement('img');img.src='media/'+c.id+'.jpg';img.loading='lazy';img.decoding='async';img.alt='';img.width=320;img.height=180;
+      const tag=document.createElement('span');tag.className='tag';tag.textContent=c.id;
+      const play=document.createElement('span');play.className='play';play.setAttribute('aria-hidden','true');
+      const meta=document.createElement('span');meta.className='meta';
+      const t=document.createElement('b');t.textContent=c.title;
+      const sub=document.createElement('span');
+      sub.textContent=[c.seconds?Math.round(c.seconds)+'s':'',filmNames[c.section]||c.section].filter(Boolean).join(' \u00b7 ');
+      meta.append(t,sub);b.append(img,tag,play,meta);
+      b.addEventListener('click',()=>show(c,true));
+      return b}));
+  }
+  const groups=['all',...[...new Set(clips.map(c=>c.section))].sort((a,b)=>a.localeCompare(b))];
+  filters.replaceChildren(...groups.map(g=>{
+    const btn=document.createElement('button');btn.type='button';btn.textContent=filmNames[g]||g;
+    btn.setAttribute('aria-pressed',g===active?'true':'false');
+    btn.addEventListener('click',()=>{active=g;for(const x of filters.children)x.setAttribute('aria-pressed',x===btn?'true':'false');render()});
+    return btn}));
+  show(clips.find(c=>c.id==='A1')||clips[0],false);
+  render();
+}).catch(()=>{const g=el('film-count');if(g)g.textContent='Clip index unavailable.'});

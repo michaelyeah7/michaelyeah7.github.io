@@ -1,0 +1,16 @@
+# Media served by GitHub Pages is kept as regular git objects on purpose.
+# Do NOT move *.mp4 / *.jpg to Git LFS: GitHub Pages does not resolve LFS
+# objects on a branch deploy and would serve the pointer text file instead of
+# the video. See github/community discussion 50337.
+*.mp4  binary
+*.mov  binary
+*.webm binary
+*.jpg  binary
+*.jpeg binary
+*.png  binary
+*.gif  binary
+*.svg  text
+*.pdf  binary
+*.zip  binary
+*.woff  binary
+*.woff2 binary

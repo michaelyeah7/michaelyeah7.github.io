@@ -1,0 +1,722 @@
+{
+ "source": "R1, the 16-episode lab-view run of 2026-10-31",
+ "preliminary": true,
+ "readouts": [
+  {
+   "key": "episodes",
+   "label": "Episodes completed",
+   "value": "16 of 16",
+   "note": "sealed plate back on its carrier"
+  },
+  {
+   "key": "belt_hotel",
+   "label": "Belt to hotel",
+   "value": "1.8-2.2",
+   "unit": "s",
+   "note": "arm motion, grasp to set-down"
+  },
+  {
+   "key": "hotel_sealer",
+   "label": "Hotel to sealer",
+   "value": "3.1-3.5",
+   "unit": "s",
+   "note": "arm motion, grasp to set-down"
+  },
+  {
+   "key": "setdown",
+   "label": "Set-down error, mean",
+   "value": "0.34-0.73",
+   "unit": "mm",
+   "note": "xy offset from the nest seat, three stations"
+  },
+  {
+   "key": "grip",
+   "label": "Grip test",
+   "value": "48 of 48 held",
+   "note": "96 pulses up to 20 N, slip at most 1.2 mm"
+  }
+ ],
+ "clips": [
+  {
+   "id": "A1",
+   "section": "cell",
+   "title": "UR5e full cycle",
+   "caption": "A UR5e takes a plate off a carrier, stores it in the plate hotel, seals it in the a4S and puts it back on its carrier. One full cycle, about 50 s, shown with the step the robot is in.",
+   "robot": "UR5e",
+   "route": "belt, hotel, a4S, belt",
+   "dr": [
+    "plate type",
+    "pose",
+    "light",
+    "force"
+   ],
+   "seconds": 50.9,
+   "w": 1280,
+   "h": 720,
+   "poster": true
+  },
+  {
+   "id": "A2",
+   "section": "cell",
+   "title": "Four cells, one timeline",
+   "caption": "Four randomised cells run side by side, each in a different phase, with different plates and lighting.",
+   "robot": "UR5e",
+   "route": "four envs",
+   "dr": [
+    "plate type",
+    "pose",
+    "light",
+    "timing"
+   ],
+   "seconds": 30.0,
+   "w": 1280,
+   "h": 720,
+   "poster": true
+  },
+  {
+   "id": "I1",
+   "section": "machines",
+   "title": "Three machines, one cell",
+   "caption": "A plate off a carrier goes to three different machines, side by side (three separate runs). The Echo 650 pushes a drawer out; the thermocycler takes the plate on a thermal block under a lid; the port is a machine built for this cell, a housing with a front opening and a tray on one joint. Each presents its slot, takes the plate, runs its own process and gives it back (full clips C15 to C20).",
+   "robot": "UR5e",
+   "route": "belt, machine, belt",
+   "dr": [
+    "plate type",
+    "pose",
+    "timing"
+   ],
+   "seconds": 50.2,
+   "w": 1280,
+   "h": 240,
+   "poster": true
+  },
+  {
+   "id": "C1",
+   "section": "routes",
+   "title": "Belt to hotel",
+   "caption": "Horizontal approach into one of five shelves, with the plate sliding between two rails.",
+   "robot": "UR5e",
+   "route": "carrier, upright hotel",
+   "dr": [
+    "shelf 1 of 5",
+    "plate pose"
+   ],
+   "seconds": 14.4,
+   "w": 1280,
+   "h": 720,
+   "poster": true
+  },
+  {
+   "id": "C2",
+   "section": "routes",
+   "title": "Hotel to sealer",
+   "caption": "Pull out of the shelf and set down on the a4S drawer, a big slot with 2 to 2.5 mm per side.",
+   "robot": "UR5e",
+   "route": "upright hotel, a4S drawer",
+   "dr": [
+    "sealer pose"
+   ],
+   "seconds": 15.8,
+   "w": 1280,
+   "h": 720,
+   "poster": true
+  },
+  {
+   "id": "C3",
+   "section": "routes",
+   "title": "Sealer to belt",
+   "caption": "The sealed plate goes back on its carrier, which leaves.",
+   "robot": "UR5e",
+   "route": "a4S drawer, carrier",
+   "dr": [
+    "stop position"
+   ],
+   "seconds": 15.1,
+   "w": 1280,
+   "h": 720,
+   "poster": true
+  },
+  {
+   "id": "C4",
+   "section": "routes",
+   "title": "Moving belt to flat hub",
+   "caption": "The carrier never stops. The arm waits until a plate is four seconds from its pick point, then follows it: the grasp target is updated every control step from the plate's measured position and speed, the fingers close on the moving plate, it is lifted off, carried to the flat hub and set down in a nest. 8 of 8 attempts were saved (13-14 s each), with seven plate types (12-well to 384-well, 14 to 44 mm tall), a random plate offset on its carrier and belts at 80-110 mm/s. Set-down error 0.8 mm mean (1.9 worst); every force-pulse test held (8 of 8, max slip 1.2 mm). Belt speeds are measured on the clip's own clock: the belt's physics setting is one eighth of that, because the simulator steps its physics 0.16 s for every 0.02 s control step.",
+   "robot": "UR5e",
+   "route": "moving carrier, flat hub",
+   "dr": [
+    "belt speed",
+    "plate type",
+    "pose",
+    "timing"
+   ],
+   "seconds": 13.2,
+   "w": 1280,
+   "h": 720,
+   "poster": true
+  },
+  {
+   "id": "C4b",
+   "section": "routes",
+   "title": "Moving belt, from the side",
+   "caption": "The same episode from the front-right of the cell, close to the belt.",
+   "robot": "UR5e",
+   "route": "moving carrier, flat hub",
+   "dr": [
+    "belt speed",
+    "plate type",
+    "pose",
+    "timing"
+   ],
+   "seconds": 13.2,
+   "w": 1280,
+   "h": 720,
+   "poster": true
+  },
+  {
+   "id": "C5",
+   "section": "routes",
+   "title": "Flat hub to reader",
+   "caption": "Hub nest to the reader's tray: the plate is set down, the tray carries it in, the door shuts for a timed read, then door and tray open again and the arm takes the plate back to its carrier.",
+   "robot": "UR5e",
+   "route": "flat hub, reader tray",
+   "dr": [],
+   "seconds": 52.4,
+   "w": 1280,
+   "h": 720,
+   "poster": true
+  },
+  {
+   "id": "C6",
+   "section": "routes",
+   "title": "Reader to deck slot",
+   "caption": "From the reader's tray, through the arm's ready pose, onto slot D2 of a liquid handler's deck: three seconds there, then back to the carrier the same way. The handler's door stays up and its gantry does not run in this clip.",
+   "robot": "UR5e",
+   "route": "reader tray, deck slot",
+   "dr": [],
+   "seconds": 61.6,
+   "w": 1280,
+   "h": 720,
+   "poster": true
+  },
+  {
+   "id": "C8",
+   "section": "routes",
+   "title": "Hotel to shaker clamps",
+   "caption": "Hotel shelf to the clamped slot of a shaker: the platform turns five revolutions and stops where it started, then the arm takes the plate back to its carrier.",
+   "robot": "UR5e",
+   "route": "upright hotel, shaker",
+   "dr": [],
+   "seconds": 22.4,
+   "w": 1280,
+   "h": 720,
+   "poster": true
+  },
+  {
+   "id": "C9",
+   "section": "routes",
+   "title": "Flat hub to centrifuge bucket",
+   "caption": "From the hub's nest into the front bucket of a benchtop centrifuge, which carries a small plate adapter: the lid shuts, the rotor turns three revolutions and stops where it started, the lid opens and the arm brings the plate back to its carrier.",
+   "robot": "UR5e",
+   "route": "flat hub, swing bucket",
+   "dr": [],
+   "seconds": 54.0,
+   "w": 1280,
+   "h": 720,
+   "poster": true
+  },
+  {
+   "id": "C10",
+   "section": "routes",
+   "title": "Tolerance ladder",
+   "caption": "One plate is set down in four nests whose corner guides leave 5, 2.5, 1 and 0.5 mm per side, taken out again, and put back on the belt: five set-downs in 56 s. Three of four attempts went through every nest (left tile); the set-down error was 0.23 / 0.28 / 0.33 / 0.11 mm mean in the 5 / 2.5 / 1 / 0.5 mm nests (worst 0.33 / 0.53 / 0.73 / 0.19 mm) and 0.39 mm on the carrier. The fourth attempt, with a 44 mm reservoir, stopped at the 0.5 mm nest (right tile): the plate came down 0.66 mm off, more than the nest allows, and rode up on a guide, so the run was dropped. Every force-pulse test held (20 of 20, max slip 1.3 mm; the count includes legs of attempts cut off when the run was stopped). The robot works from the simulator's poses here, not from a camera.",
+   "robot": "UR5e",
+   "route": "belt, nests of 5 / 2.5 / 1 / 0.5 mm, belt",
+   "dr": [
+    "clearance 5, 2.5, 1, 0.5 mm per side",
+    "plate type",
+    "plate offset on the carrier"
+   ],
+   "seconds": 57.7,
+   "w": 1920,
+   "h": 540,
+   "poster": true
+  },
+  {
+   "id": "C13",
+   "section": "routes",
+   "title": "Machine chain: read, seal, store",
+   "caption": "One plate through three stations: the reader's tray carries it in for a timed read, the sealer's drawer takes it for the seal, a hotel shelf stores it, and the arm brings it back to its carrier.",
+   "robot": "UR5e",
+   "route": "belt, reader, sealer, hotel, belt",
+   "dr": [],
+   "seconds": 74.5,
+   "w": 1280,
+   "h": 720,
+   "poster": true
+  },
+  {
+   "id": "B1",
+   "section": "robots",
+   "title": "UR10e",
+   "caption": "The same cycle with the larger UR arm (1.3 m reach, 12.5 kg payload class) and the same plate gripper: carrier, hotel shelf, a4S sealer, carrier. 4 of 4 episodes saved in this film run (46-48 s each; it was stopped after the first four), no failures. Set-down error 0.6 mm mean at the hotel (0.9 mm worst), 0.2 mm at the sealer, 0.3 mm on the carrier; every force-pulse test held (20 of 20, max slip 1.4 mm). A second, longer run of the same cell without cameras saved all 12 of 12 (46-51 s each, on the two upper hotel shelves, which are the ones this arm reaches): set-down 0.72 / 0.42 / 0.38 mm mean (hotel, sealer, carrier; 1.9 / 1.8 / 0.9 worst), 36 of 36 force-pulse tests held (max slip 1.4 mm); the comparison table uses that run.",
+   "robot": "UR10e",
+   "route": "belt, hotel, a4S, belt",
+   "dr": [
+    "plate type",
+    "pose",
+    "timing"
+   ],
+   "seconds": 47.0,
+   "w": 1280,
+   "h": 720,
+   "poster": true
+  },
+  {
+   "id": "B2",
+   "section": "robots",
+   "title": "Franka",
+   "caption": "The same plate gripper on a Franka Emika Panda (seven joints, a shorter reach with this long gripper) doing the whole cycle: the carrier's plate to any of the hotel's five shelves (the clip is the lowest one), to the a4S sealer's drawer and back to its carrier. 8 of 8 attempts were saved (47-52 s each), on shelves 0, 1, 1, 2, 2, 3, 3 and 4. Set-down error 0.73 mm mean at the shelf (1.16 mm worst), 0.37 mm at the sealer (0.98) and 0.42 mm on the carrier (1.28); every force-pulse test held (24 of 24, max slip 1.3 mm). Two things were changed for this arm: it stands 0.2 m toward +x and 0.2 m toward the back glass, turned 45 degrees (offline IK along every station's approach line picked the mount), and the sealer is drawn from the half of its usual box that is farther from the arm. With the sealer close to the arm's own column the descent to the drawer crawled, and two of the first smoke's four attempts released the plate in the air.",
+   "robot": "Franka",
+   "route": "belt, hotel (all five shelves), a4S, belt",
+   "dr": [
+    "plate type",
+    "pose",
+    "timing"
+   ],
+   "seconds": 48.5,
+   "w": 1280,
+   "h": 720,
+   "poster": true
+  },
+  {
+   "id": "B3",
+   "section": "robots",
+   "title": "xArm7",
+   "caption": "The whole cycle with a UFACTORY xArm 7 (seven joints, a different vendor) and the same plate gripper on its flange: the carrier's plate to one of the hotel's five shelves, to the a4S sealer's drawer, back to its carrier. 8 of 10 finished episodes were saved (45-53 s each); the other two failed at the sealer's drawer (one plate 11 mm off its nest, one dropped). Set-down error of the saved episodes 0.8 mm mean at the hotel (2.5 mm worst), 0.4 mm at the sealer, 0.2 mm on the carrier; every force-pulse test held (35 of 35, max slip 2.1 mm).",
+   "robot": "xArm7",
+   "route": "belt, hotel, a4S, belt",
+   "dr": [
+    "plate type",
+    "pose",
+    "timing"
+   ],
+   "seconds": 48.5,
+   "w": 1280,
+   "h": 720,
+   "poster": true
+  },
+  {
+   "id": "B4",
+   "section": "robots",
+   "title": "Lab arm with Z-lift",
+   "caption": "A four-joint lab-automation arm, a vertical lift column carrying two horizontal links and a wrist, built for this cell and fitted with the same plate gripper. The lift picks the shelf height: the arm takes the plate from its carrier to one of the three upper hotel shelves, waits there, and brings it back. 8 of 9 finished attempts were saved (27-34 s each); the ninth dropped the plate at the hotel. Set-down error 0.6 mm at the shelf and 0.3 mm on the carrier; every force-pulse test held (20 of 20, max slip 2.0 mm). Not yet: the two lowest shelves (the plate ends 19 mm short) and the sealer drawer.",
+   "robot": "lab arm on a Z-lift (4 joints)",
+   "route": "belt, hotel shelves 3-5, belt",
+   "dr": [
+    "plate type",
+    "pose",
+    "timing"
+   ],
+   "seconds": 28.0,
+   "w": 1280,
+   "h": 720,
+   "poster": true
+  },
+  {
+   "id": "B7",
+   "section": "robots",
+   "title": "Seven embodiments, one grid",
+   "caption": "Seven embodiments side by side, each from its own first frame (a tile dims when its run is done). The UR5e, UR10e, xArm 7 and Franka run the full route, belt to hotel to sealer and back. The lab arm reaches only the hotel's upper shelves and skips the sealer. The two Ridgeback bases, with a Franka and with a UR5e, fetch a plate across the aisle: belt, flat hub, belt. Each tile is a separate run with its own randomised plate, pose and timing.",
+   "robot": "all",
+   "route": "per tile: belt, hotel, sealer, belt; shelves; flat hub",
+   "dr": [],
+   "seconds": 52.4,
+   "w": 1920,
+   "h": 540,
+   "poster": true
+  },
+  {
+   "id": "D1",
+   "section": "robust",
+   "title": "Force pulses",
+   "caption": "Random pushes of 15 to 30 N (and up to 0.8 N m of torque) hit the held plate while the arm holds it and carries it on: five to ten times its own weight. The arrow is the force. Every plate is the 2 ml deep-well block filled to the brim, 0.30 kg, the heaviest in the set. 8 of 8 attempts were saved (50-54 s each) and all 24 force-pulse tests held, 72 pulses in all, max slip 3.0 mm; set-down error 0.8 mm mean at the hotel, 0.2 mm at the sealer, 0.3 mm on the carrier.",
+   "robot": "UR5e",
+   "route": "belt, hotel, a4S, belt",
+   "dr": [
+    "force 15 to 30 N",
+    "torque to 0.8 N m",
+    "a 0.30 kg plate"
+   ],
+   "seconds": 53.0,
+   "w": 1280,
+   "h": 720,
+   "poster": true
+  },
+  {
+   "id": "D2",
+   "section": "robust",
+   "title": "Extreme light",
+   "caption": "One cycle of the cell while the light changes every nine seconds: normal lab light, dim, near-dark, glare with a hard shadow, a magenta and cyan gel, a 2 Hz strobe. The plate handling does not notice: the run succeeds (49.9 s, set-down errors 0.6 / 0.1 / 0.02 mm, all three force-pulse tests held), because the robot works from the simulator's poses, not from the picture. The room really goes dark: the renderer's constant fill light is held at zero for the dark stretches.",
+   "robot": "UR5e",
+   "route": "belt, hotel, a4S, belt",
+   "dr": [
+    "normal",
+    "dim",
+    "near-dark",
+    "glare",
+    "coloured gel",
+    "strobe"
+   ],
+   "seconds": 50.0,
+   "w": 1280,
+   "h": 720,
+   "poster": true
+  },
+  {
+   "id": "D2b",
+   "section": "robust",
+   "title": "Extreme light, room view",
+   "caption": "The same episode from the wide lab camera: what the room looks like at each light condition.",
+   "robot": "UR5e",
+   "route": "belt, hotel, a4S, belt",
+   "dr": [
+    "normal",
+    "dim",
+    "near-dark",
+    "glare",
+    "coloured gel",
+    "strobe"
+   ],
+   "seconds": 50.0,
+   "w": 1280,
+   "h": 720,
+   "poster": true
+  },
+  {
+   "id": "D3",
+   "section": "robust",
+   "title": "Pose randomisation",
+   "caption": "Twenty episodes overlaid: carrier stop position, plate offset and yaw, sealer pose, hotel shelf.",
+   "robot": "UR5e",
+   "route": "20 episodes overlaid",
+   "dr": [
+    "belt stop +-15 cm",
+    "plate offset",
+    "device pose"
+   ],
+   "seconds": 19.0,
+   "w": 1280,
+   "h": 720,
+   "poster": true
+  },
+  {
+   "id": "D4",
+   "section": "robust",
+   "title": "Plate formats",
+   "caption": "Twelve plate formats go through the same cycle: 24-, 96-, 384- and 1536-well plates, deep-well blocks, a 12-channel reservoir and a PCR plate, clear, white, black and red.",
+   "robot": "UR5e",
+   "route": "belt, hotel, a4S, belt",
+   "dr": [
+    "8 of 16 episodes shown"
+   ],
+   "seconds": 18.0,
+   "w": 1280,
+   "h": 540,
+   "poster": true
+  },
+  {
+   "id": "D5",
+   "section": "robust",
+   "title": "A person walks past",
+   "caption": "A person walks along the aisle in front of the glass, lap after lap in alternating directions (a pause of 4 to 9 s between laps, 1.2 m from the cell), while the arm runs the whole cycle: belt, hotel, sealer and back. The arm does not react to the person, so this clip tests the camera's view and the scene, not a safety behaviour. 4 of 4 attempts were saved (47-51 s each); set-down error 0.6 mm mean at the hotel (0.7 worst), 0.5 mm at the sealer and 0.3 mm on the carrier; every force-pulse test held (12 of 12, max slip 0.9 mm).",
+   "robot": "UR5e",
+   "route": "belt, hotel, a4S, belt",
+   "dr": [
+    "person"
+   ],
+   "seconds": 49.4,
+   "w": 1280,
+   "h": 720,
+   "poster": true
+  },
+  {
+   "id": "D6",
+   "section": "robust",
+   "title": "A person steps into the zone",
+   "caption": "A worker walks in from the aisle to the glass, stands there for a while and walks away again, lap after lap. Two rings are painted on the floor around the cell: inside the yellow ring (2.5 m) the arm gets a control step on every other tick, inside the red ring (1.55 m) none, and it goes on when the person is 0.15 m outside the ring again. The banner and the stack light on the enclosure show the state and the person's distance; the belt and the machines keep running while the arm waits. All four attempts were saved (69-95 s, of which 25-45 s were stopped: 17 stops of 5.6-20.7 s) and each one carried on where it had stopped: set-down 0.57 / 0.48 / 0.54 mm mean (hotel, sealer, carrier), all 13 force-pulse tests held. In every one of the 17 stops the gripper moved at most 0.5 mm while stopped: when a stop begins, the hook sets the arm's commanded pose to its present pose, so a long move that was commanded in one piece does not run on (in an earlier run without that, one stop let the gripper travel 478 mm). The clip is the third attempt, 12-54 s: three of its eight stops. This is a simulated protective stop on separation distance, not a certified safety function, and the person is read from the simulator, not seen by a camera.",
+   "robot": "UR5e",
+   "route": "belt, hotel, a4S, belt",
+   "dr": [
+    "person",
+    "stop ring 1.55 m",
+    "slow ring 2.5 m"
+   ],
+   "seconds": 42.0,
+   "w": 1280,
+   "h": 720,
+   "poster": true
+  },
+  {
+   "id": "D7",
+   "section": "robust",
+   "title": "Stress wall",
+   "caption": "Eight conditions side by side, each a window cut from its own clip on this site (a montage, not one simulation): 15 to 30 N pushes on a 0.30 kg plate (24 of 24 force-pulse tests held), near-dark, glare with a hard shadow, a magenta and cyan gel and a 2 Hz strobe (one run that succeeded through all of them), a person walking past (4 of 4 saved), a person in the stop zone (4 of 4 saved, 17 stops, each resumed) and a belt that never stops (8 of 8 saved). The line under each title is that run's own count; the clips above and below have the details and the limits.",
+   "robot": "UR5e",
+   "route": "eight separate runs of one cell",
+   "dr": [
+    "force",
+    "four light conditions",
+    "a person",
+    "a stop zone",
+    "a moving belt"
+   ],
+   "seconds": 13.5,
+   "w": 1920,
+   "h": 1080,
+   "poster": true
+  },
+  {
+   "id": "E1",
+   "section": "speed",
+   "title": "Speed ladder",
+   "caption": "The same cycle (carrier, hotel, sealer, carrier) with the arm at 1x, 2x and 3x speed, one episode each from the same seed: 43.9 s, 30.6 s and 27.0 s (the table above has four episodes at each level: 42.1 s, 29.6 s and 26.2 s on average, all twelve saved). The arm's three moves shrink from 9.8 s to 6.0 s to 4.6 s; the rest of the cycle is the sealer's dwell and the carrier's timing, which the arm cannot hurry.",
+   "robot": "UR5e",
+   "route": "same cycle at 1x, 2x, 3x arm speed",
+   "dr": [
+    "speed level"
+   ],
+   "seconds": 45.4,
+   "w": 1280,
+   "h": 240,
+   "poster": true
+  },
+  {
+   "id": "F1",
+   "section": "method",
+   "title": "Marker pose",
+   "caption": "A three-faced prism marker, read with ArUco and one perspective-n-point fit whose foot is held to the known bench height, in a 1920 x 1080 view: both prisms found in 250/250 sampled frames of one episode, position error 2.31 / 2.95 mm, rotation 0.34 / 0.01 degrees. Chained through both markers, the five hotel shelves land in the robot's frame within 1.21 mm (95th percentile 2.25, worst 2.57) with no teaching.",
+   "robot": "UR5e",
+   "route": "marker on carrier and hub",
+   "dr": [
+    "light"
+   ],
+   "seconds": 50.0,
+   "w": 1280,
+   "h": 720,
+   "poster": true
+  },
+  {
+   "id": "F2",
+   "section": "method",
+   "title": "Segmentation",
+   "caption": "Isaac's instance segmentation picks out the plate at the pick station and a depth-based footprint fit turns the mask into a pose, with no marker: 223 fits in one episode, median position error 2.26 mm (95th percentile 3.17, worst 5.54), yaw 0.21 degrees (95th percentile 1.78).",
+   "robot": "UR5e",
+   "route": "mask to pose",
+   "dr": [
+    "plate type"
+   ],
+   "seconds": 13.6,
+   "w": 1280,
+   "h": 720,
+   "poster": true
+  },
+  {
+   "id": "F4",
+   "section": "method",
+   "title": "Teach-free station offset",
+   "caption": "The hub was moved 3.4 cm and turned 3 degrees after the arm was taught. Told the taught place, the arm sets the plate down beside the nest; told the place two prism markers read (1.0 mm and 0.15 degrees off), the same route succeeds.",
+   "robot": "UR5e",
+   "route": "hub moved 3.4 cm and 3 degrees, told by two prism markers",
+   "dr": [
+    "hub pose"
+   ],
+   "seconds": 41.8,
+   "w": 1280,
+   "h": 720,
+   "poster": true
+  },
+  {
+   "id": "G1",
+   "section": "mobile",
+   "title": "Ridgeback and Franka",
+   "caption": "A Ridgeback base carries a Franka with the same plate gripper. It takes the plate off a carrier waiting at the belt, drives across the aisle with the plate held, sets it in a nest on the flat hub, takes it out again after a dwell and brings it back to its carrier: 4-5 m of base travel per episode, base and arm planned together. 2 of 3 attempts in this run were saved (29-32 s each); the third stopped when the arm could not settle at the hub's hover pose. This is the best of several runs of this errand: four later runs, with the hub moved, a toe board along the belt and other planner settings, saved 4 of 7, 1 of 3, 1 of 3 and 1 of 4 attempts. Their failures were all in the free-base whole-body plan, none in the grasp or the force-pulse tests: no path to the pre-place pose over the hub, a stance from which the final descent stalled, a base that jammed on the end of the toe board, and a fingertip that landed on the rim of the 44 mm plate (fixed in the planner by blending the hand's orientation earlier in the descent). The Ridgeback with a UR5e (below) is the more reliable of the two. Set-down error 0.5 mm mean at the hub (0.6 worst) and 0.4 mm on the carrier (0.6 worst); the plate held through every force-pulse test (5 of 5, max slip 0.8 mm). The belt and the hub stand are 0.25 m lower than in the UR5e's cell, so that the seats stay inside this arm's reach from a base that stops a few centimetres short.",
+   "robot": "Ridgeback + Franka",
+   "route": "carrier, drive, flat hub, drive, carrier",
+   "dr": [
+    "pose",
+    "timing"
+   ],
+   "seconds": 28.6,
+   "w": 1280,
+   "h": 720,
+   "poster": true
+  },
+  {
+   "id": "G2",
+   "section": "mobile",
+   "title": "Ridgeback and UR5e",
+   "caption": "The same errand with a UR5e on the same Ridgeback base. The base takes a plate off a carrier at the belt, drives it across the aisle (5.6-9.4 m of base travel per episode in this run, base and arm planned together), sets it in a nest on the flat hub, takes it out again after a dwell and brings it back to its carrier. This run saved all 4 of its 4 attempts (27-33 s each); a second run of the same configuration saved 5 of 8 (28-32 s each), so 9 of 12 together, and an earlier version of the configuration 4 of 6. The three attempts of the second run that failed were all in planning: twice the pre-grasp hover was not reached (the hand stopped 3 and 11 cm short in 400 steps, once with the chassis against the toe board), once no plan to the hub's set-down pose was found. Over the 9 saved episodes: set-down error 0.30 mm mean at the hub (0.86 worst) and 0.42 mm on the carrier (1.31 worst); the plate held through every force-pulse test (19 of 19, max slip 2.3 mm). The belt and the hub stand are set 0.26 m below the UR5e's own cell, so that both seats are inside this arm's reach from a base that stops a few centimetres short; a toe board along the belt (4.4 m, running west past the base's planning range, so no plan can route round its end) keeps the chassis from driving under it, and the arm starts from a raised carry pose so that the fingers pass above the plates. The planner's model of the chassis is shorter than the real one (see the notes), which is the likely reason for the jams.",
+   "robot": "Ridgeback + UR5e",
+   "route": "carrier, drive, flat hub, drive, carrier",
+   "dr": [
+    "pose",
+    "timing"
+   ],
+   "seconds": 32.8,
+   "w": 1280,
+   "h": 720,
+   "poster": true
+  },
+  {
+   "id": "G1b",
+   "section": "mobile",
+   "title": "Ridgeback and Franka from above",
+   "caption": "The same errand from above, the whole route in one frame: the belt's pick station at the top, the hub at the left, the base's drive between them. The same episode as the lab view, from the overhead camera; yellow dotted lines are the planner's waypoints.",
+   "robot": "Ridgeback + Franka",
+   "route": "carrier, drive, flat hub, drive, carrier",
+   "dr": [
+    "pose",
+    "timing"
+   ],
+   "seconds": 28.6,
+   "w": 1280,
+   "h": 720,
+   "poster": true
+  },
+  {
+   "id": "G2b",
+   "section": "mobile",
+   "title": "Ridgeback and UR5e from above",
+   "caption": "The same episode from the overhead camera: the belt at the top, the hub at the left, and the base's drive between them. Yellow dotted lines are the planner's waypoints; the base stops where the whole-body plan puts it.",
+   "robot": "Ridgeback + UR5e",
+   "route": "carrier, drive, flat hub, drive, carrier",
+   "dr": [
+    "pose",
+    "timing"
+   ],
+   "seconds": 32.8,
+   "w": 1280,
+   "h": 720,
+   "poster": true
+  },
+  {
+   "id": "C14",
+   "section": "routes",
+   "title": "Belt to flat hub",
+   "caption": "The buffer is a flat hub with two top-loading nests instead of the upright hotel: the same grasp and place skills, a tool-down approach instead of a slide-in one. The cycle is the full one, belt, hub, sealer, belt. 4 of 4 attempts were saved (45-48 s each), with four plate formats (24-well, 96-well deep 1 ml and 2 ml, a 12-channel reservoir). Set-down error 0.16 mm mean at the hub (0.43 worst), 0.61 mm at the sealer (0.86) and 0.23 mm back on the carrier (0.60); every force-pulse test held (12 of 12, max slip 1.1 mm).",
+   "robot": "UR5e",
+   "route": "belt, flat hub, a4S, belt",
+   "dr": [
+    "plate type",
+    "pose",
+    "timing"
+   ],
+   "seconds": 46.2,
+   "w": 1280,
+   "h": 720,
+   "poster": true
+  },
+  {
+   "id": "C15",
+   "section": "routes",
+   "title": "Carrier to Echo drawer",
+   "caption": "The Echo 650 pushes its drawer out; the arm sets the plate on it, the drawer draws it in for a three-second transfer and pushes it out again.",
+   "robot": "UR5e",
+   "route": "belt, echo drawer, belt",
+   "dr": [
+    "plate type",
+    "pose",
+    "timing"
+   ],
+   "seconds": 21.0,
+   "w": 1280,
+   "h": 720,
+   "poster": true
+  },
+  {
+   "id": "C16",
+   "section": "routes",
+   "title": "Echo drawer to carrier",
+   "caption": "The plate leaves the drawer that the machine just pushed out and goes back on its carrier.",
+   "robot": "UR5e",
+   "route": "belt, echo drawer, belt",
+   "dr": [
+    "plate type",
+    "pose",
+    "timing"
+   ],
+   "seconds": 13.4,
+   "w": 1280,
+   "h": 720,
+   "poster": true
+  },
+  {
+   "id": "C17",
+   "section": "routes",
+   "title": "Carrier to thermal block",
+   "caption": "A small slot: the plate drops onto a 96-well thermal block. The arm steps back, the lid closes and a time-compressed PCR program runs; the lid opens when it is done.",
+   "robot": "UR5e",
+   "route": "belt, thermocycler, belt",
+   "dr": [
+    "plate type",
+    "pose",
+    "timing"
+   ],
+   "seconds": 48.7,
+   "w": 1280,
+   "h": 720,
+   "poster": true
+  },
+  {
+   "id": "C18",
+   "section": "routes",
+   "title": "Thermal block to carrier",
+   "caption": "The lid is open, the arm lifts the plate out of the block and puts it on its carrier.",
+   "robot": "UR5e",
+   "route": "belt, thermocycler, belt",
+   "dr": [
+    "plate type",
+    "pose",
+    "timing"
+   ],
+   "seconds": 14.4,
+   "w": 1280,
+   "h": 720,
+   "poster": true
+  },
+  {
+   "id": "C19",
+   "section": "routes",
+   "title": "Carrier to port tray",
+   "caption": "An authored lab machine: a housing with a front opening and a tray on one prismatic joint, made for this cell because the scanned boxes have no opening. The tray is out at every reset; the arm sets the plate on it (0.28 mm mean off the seat, 0.64 mm worst of 8 episodes), the tray carries it in for a 3 s process and brings it out again.",
+   "robot": "UR5e",
+   "route": "belt, authored port, belt",
+   "dr": [
+    "plate type",
+    "pose",
+    "timing"
+   ],
+   "seconds": 20.9,
+   "w": 1280,
+   "h": 720,
+   "poster": true
+  },
+  {
+   "id": "C20",
+   "section": "routes",
+   "title": "Port tray to carrier",
+   "caption": "The tray is out again; the arm takes the plate and puts it back on its own carrier (0.14 mm mean, 0.42 mm worst). 8 of 8 episodes, 31-32 s each, with 96-well, 24-well and 12-well reservoir plates; 16 of 16 force-pulse tests held (max 20 N, slip 1.0 mm).",
+   "robot": "UR5e",
+   "route": "belt, authored port, belt",
+   "dr": [
+    "plate type",
+    "pose",
+    "timing"
+   ],
+   "seconds": 12.2,
+   "w": 1280,
+   "h": 720,
+   "poster": true
+  }
+ ]
+}
