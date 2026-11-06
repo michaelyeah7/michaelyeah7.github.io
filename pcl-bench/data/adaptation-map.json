@@ -1,0 +1,532 @@
+[
+  {
+    "award_id": "2607522",
+    "node": "DREAM",
+    "institution": "Northwestern University",
+    "award_source": "https://www.nsf.gov/awardsearch/show-award/?AWD_ID=2607522",
+    "status": "Proposed for node review",
+    "candidate_task": "Estimate a biosensor response curve after excluding a plate with failed controls.",
+    "sources": [
+      {
+        "key": "gamowlab",
+        "title": "LabBench: Can AI agents decide what experiment to run next?",
+        "url": "https://gamowlabs.com/labbench-benchmarking-ai-wet-lab-decisions",
+        "retain": "Hide the later experimental decision when presenting the earlier evidence."
+      },
+      {
+        "key": "flip2",
+        "title": "FLIP2: Expanding Protein Fitness Landscape Benchmarks for Real-World Machine Learning Applications",
+        "url": "https://proceedings.mlr.press/v306/didi26a.html",
+        "retain": "Group related protein designs when separating development and evaluation data."
+      },
+      {
+        "key": "cfps",
+        "title": "Using a GPT-5-driven autonomous lab to optimize the cost and titer of cell-free protein synthesis",
+        "url": "https://doi.org/10.64898/2026.02.05.703998",
+        "retain": "Charge each proposed batch against a finite experimental budget."
+      }
+    ],
+    "adaptation": "Replace fitness prediction with blinded concentration–response fitting. Give the agent plate controls, an allowable concentration range and the option to repeat a plate.",
+    "minimum_evidence_request": "One shareable plate map, raw readings from a valid plate and a control-failing plate, concentrations and units, and a held-back fit or expert adjudication. Ask which readout and response model the scientist trusts.",
+    "diagnostic_holdout": "Assign whole plates and all replicates of one variant family to one split. Reject confidence in an EC50 when the accepted concentrations do not bracket the response midpoint."
+  },
+  {
+    "award_id": "2607506",
+    "node": "CLAIRE",
+    "institution": "Boston University",
+    "award_source": "https://www.nsf.gov/awardsearch/show-award/?AWD_ID=2607506",
+    "status": "Proposed for node review",
+    "candidate_task": "Compare cell-free reporter designs across plates with different reader gains.",
+    "sources": [
+      {
+        "key": "cfps",
+        "title": "Using a GPT-5-driven autonomous lab to optimize the cost and titer of cell-free protein synthesis",
+        "url": "https://doi.org/10.64898/2026.02.05.703998",
+        "retain": "Retain a cell-free expression run with a measured output."
+      },
+      {
+        "key": "bixbench3",
+        "title": "BixBench3: Benchmarking AI agents on research-study-scale computational biology tasks",
+        "url": "https://arxiv.org/abs/2608.25286",
+        "retain": "Compare derived numerical artifacts to independently generated reference artifacts."
+      }
+    ],
+    "adaptation": "Vary reader gain and saturation while preserving common reference wells. Ask for comparable reporter rankings and an explicit flag for comparisons outside the calibrated range.",
+    "minimum_evidence_request": "Paired exports from two gain settings on a common reference series, a plate map, and the operator-approved linear range or saturation flag.",
+    "diagnostic_holdout": "Hide one complete plate or reader session. Include a design whose apparent rank changes under naive pooling, and verify the corrected order only among measurable designs."
+  },
+  {
+    "award_id": "2607564",
+    "node": "CRAB Lab",
+    "institution": "University of Maryland",
+    "award_source": "https://www.nsf.gov/awardsearch/show-award/?AWD_ID=2607564",
+    "status": "Proposed for node review",
+    "candidate_task": "Detect drift in a bioprocess sensor before changing a simulated feed schedule.",
+    "sources": [
+      {
+        "key": "scigym",
+        "title": "Measuring Scientific Capabilities of Language Models with a Systems Biology Dry Lab",
+        "url": "https://proceedings.neurips.cc/paper_files/paper/2025/hash/a23760ba51036d530a2656c3835f826c-Abstract-Datasets_and_Benchmarks_Track.html",
+        "retain": "Let interventions generate successive process observations."
+      },
+      {
+        "key": "labosbench",
+        "title": "LabOSBench: Benchmarking Computer Use Agents for Scientific Instrument Control",
+        "url": "https://arxiv.org/abs/2606.16802",
+        "retain": "Require feedback-driven decisions during an acquisition."
+      }
+    ],
+    "adaptation": "Add a drifting sensor and an independent offline check to a node-selected bioprocess variable. Permit a calibration or confirmatory sample before changing a feed setting.",
+    "minimum_evidence_request": "An annotated time segment around a measurement discrepancy, an aligned independent assay, sampling delays, and the approved range for a simulated adjustment.",
+    "diagnostic_holdout": "Hold out an entire run. Pair a sensor-offset case with a true process excursion and compare detection delay and unnecessary feed interventions."
+  },
+  {
+    "award_id": "2607601",
+    "node": "AI-BIOME",
+    "institution": "City College of New York",
+    "award_source": "https://www.nsf.gov/awardsearch/show-award/?AWD_ID=2607601",
+    "status": "Proposed for node review",
+    "candidate_task": "Choose a repeat characterization that distinguishes two candidate assemblies.",
+    "sources": [
+      {
+        "key": "discoveryworld",
+        "title": "DiscoveryWorld: A Virtual Environment for Developing and Evaluating Automated Scientific Discovery Agents",
+        "url": "https://papers.nips.cc/paper_files/paper/2024/hash/13836f251823945316ae067350a5c366-Abstract-Datasets_and_Benchmarks_Track.html",
+        "retain": "Make the next measurement discriminate competing hypotheses."
+      },
+      {
+        "key": "olympus",
+        "title": "Olympus: a benchmarking framework for noisy optimization and experiment planning",
+        "url": "https://doi.org/10.1088/2632-2153/abedc8",
+        "retain": "Charge noisy measurements to a common acquisition budget."
+      }
+    ],
+    "adaptation": "Define two node-selected assembly states that look similar in the first measurement. Price a second characterization and include the option to report unresolved structure.",
+    "minimum_evidence_request": "A matched pair of assembly readouts, an independent state label, one repeat measurement and the cost or time for each permitted test.",
+    "diagnostic_holdout": "Keep each specimen and its repeats together. Score held-out state discrimination at equal cost and check whether an uninformative repeat was recognized as such."
+  },
+  {
+    "award_id": "2607594",
+    "node": "AI Science Foundry",
+    "institution": "Carnegie Mellon University",
+    "award_source": "https://www.nsf.gov/awardsearch/show-award/?AWD_ID=2607594",
+    "status": "Proposed for node review",
+    "candidate_task": "Route an assay to a compatible instrument when its scheduled reader is unavailable.",
+    "sources": [
+      {
+        "key": "chemputer",
+        "title": "A universal system for digitization and automatic execution of the chemical synthesis literature",
+        "url": "https://doi.org/10.1126/science.abc2986",
+        "retain": "Bind a device-independent operation graph to available modules."
+      },
+      {
+        "key": "pylabrobot",
+        "title": "PyLabRobot: An open-source, hardware-agnostic interface for liquid-handling robots and accessories",
+        "url": "https://doi.org/10.1016/j.device.2023.100111",
+        "retain": "Keep the same high-level liquid-handling intent across backend configurations."
+      },
+      {
+        "key": "cloudbio",
+        "title": "An AI-powered cloud biofoundry for autonomous biological research",
+        "url": "https://doi.org/10.64898/2026.09.30.750244",
+        "retain": "Validate the device-bound script before scheduling execution."
+      }
+    ],
+    "adaptation": "Disable the scheduled reader mid-workflow. Supply an alternative with different plate compatibility, readout channels or queue times, while preserving sample identity.",
+    "minimum_evidence_request": "One approved workflow, two sanitized capability manifests, a queue or outage event, compatible labware definitions and a sample-handoff trace.",
+    "diagnostic_holdout": "Hold out a device pairing. Check capability and identity invariants plus elapsed time, including a case where deferral is the only valid action."
+  },
+  {
+    "award_id": "2607495",
+    "node": "SPEED",
+    "institution": "NC State University",
+    "award_source": "https://www.nsf.gov/awardsearch/show-award/?AWD_ID=2607495",
+    "status": "Proposed for node review",
+    "candidate_task": "Pick the next solution-phase experiment after a reference spectrum drifts.",
+    "sources": [
+      {
+        "key": "summit",
+        "title": "Summit: Benchmarking Machine Learning Methods for Reaction Optimisation",
+        "url": "https://doi.org/10.1002/cmtd.202000051",
+        "retain": "Compare reaction condition decisions under an explicit optimization budget."
+      },
+      {
+        "key": "chemgymrl",
+        "title": "ChemGymRL: A customizable interactive framework for reinforcement learning for digital chemistry",
+        "url": "https://doi.org/10.1039/D3DD00183K",
+        "retain": "Propagate material state through sequential chemical operations."
+      }
+    ],
+    "adaptation": "Insert an optical reference and a drifting wavelength or intensity response before the agent selects the next solution-phase condition. Allow a reblank or repeat only when justified.",
+    "minimum_evidence_request": "Reference and sample spectra with units, an operator-labelled drift example, allowable solution conditions and measurement costs.",
+    "diagnostic_holdout": "Hold out a solution preparation day. Distinguish reference drift from a true sample peak shift using a blinded standard acquired in the same session."
+  },
+  {
+    "award_id": "2607521",
+    "node": "COAST",
+    "institution": "UC Santa Barbara",
+    "award_source": "https://www.nsf.gov/awardsearch/show-award/?AWD_ID=2607521",
+    "status": "Proposed for node review",
+    "candidate_task": "Compare viscoelastic curves for candidate soft materials after a geometry change.",
+    "sources": [
+      {
+        "key": "bixbench3",
+        "title": "BixBench3: Benchmarking AI agents on research-study-scale computational biology tasks",
+        "url": "https://arxiv.org/abs/2608.25286",
+        "retain": "Validate intermediate analysis artifacts as well as the final reported quantity."
+      },
+      {
+        "key": "olympus",
+        "title": "Olympus: a benchmarking framework for noisy optimization and experiment planning",
+        "url": "https://doi.org/10.1088/2632-2153/abedc8",
+        "retain": "Compare decisions on noisy property measurements under a fixed budget."
+      }
+    ],
+    "adaptation": "Replace generic property labels with the node’s selected rheological quantity. Give raw or processed curves with their actual geometry metadata and operating envelope.",
+    "minimum_evidence_request": "A matched soft-material sample measured with two geometries, radius or gap metadata as applicable, the controlled variable, a valid working range and an independent reduction.",
+    "diagnostic_holdout": "Hold out one polymer batch or specimen across both geometries. Compare its corrected property ranks inside the valid range and require a flag when cross-geometry comparison is unsupported."
+  },
+  {
+    "award_id": "2607629",
+    "node": "ELECTRA",
+    "institution": "Caltech",
+    "award_source": "https://www.nsf.gov/awardsearch/show-award/?AWD_ID=2607629",
+    "status": "Proposed for node review",
+    "candidate_task": "Select a follow-up diffraction measurement from incomplete or degraded patterns.",
+    "sources": [
+      {
+        "key": "xrdbench",
+        "title": "AutoXRD: Autonomous LLM Agents and Comprehensive Evaluation for Powder Diffraction Analysis",
+        "url": "https://arxiv.org/abs/2609.00070",
+        "retain": "Use independent physical plausibility checks after interpreting diffraction evidence."
+      },
+      {
+        "key": "qdevbench",
+        "title": "Evaluating Instrument-Centered AI Agents for Table-Top Science Experiments",
+        "url": "https://arxiv.org/abs/2610.41717",
+        "retain": "Meter measurements and expose state-dependent settings on a virtual instrument."
+      }
+    ],
+    "adaptation": "Translate the diffraction decision logic to electron diffraction with tilt, dose and reciprocal-space coverage. Obtain electron-specific response and damage models from the node.",
+    "minimum_evidence_request": "An indexed tilt series with acquisition metadata, an exposure budget, a coverage mask, and an example of specimen damage or incomplete sampling.",
+    "diagnostic_holdout": "Hold out all tilts from a specimen. Credit additional reciprocal-space coverage within budget and compare the structural call with an independent reconstruction."
+  },
+  {
+    "award_id": "2607573",
+    "node": "GEMSTONE",
+    "institution": "Stanford University",
+    "award_source": "https://www.nsf.gov/awardsearch/show-award/?AWD_ID=2607573",
+    "status": "Proposed for node review",
+    "candidate_task": "Bind an abstract transfer and readout protocol to two different mock device APIs.",
+    "sources": [
+      {
+        "key": "chemputer",
+        "title": "A universal system for digitization and automatic execution of the chemical synthesis literature",
+        "url": "https://doi.org/10.1126/science.abc2986",
+        "retain": "Compile an abstract procedure against the device graph."
+      },
+      {
+        "key": "pylabrobot",
+        "title": "PyLabRobot: An open-source, hardware-agnostic interface for liquid-handling robots and accessories",
+        "url": "https://doi.org/10.1016/j.device.2023.100111",
+        "retain": "Expose transferable high-level operations with backend-specific bindings."
+      },
+      {
+        "key": "protopilot",
+        "title": "A Self-Evolving Agentic System for Automated Generation and Execution of Biological Protocols",
+        "url": "https://arxiv.org/abs/2606.31763",
+        "retain": "Separate code validity from validation of the executed workflow."
+      }
+    ],
+    "adaptation": "Run the same transfer-and-readout intent on two mock APIs with different units, resource identifiers or error codes. Publish the semantic postconditions for both.",
+    "minimum_evidence_request": "One protocol intent, two exportable command schemas and example requests, verified unit conversions, and a short operator-accepted trace for each backend.",
+    "diagnostic_holdout": "Withhold one API dialect until evaluation. Give it a fresh manifest and compare sample identity, transferred quantity, final readout units and provenance after execution."
+  },
+  {
+    "award_id": "2607628",
+    "node": "Reaction Discovery",
+    "institution": "Scripps Research",
+    "award_source": "https://www.nsf.gov/awardsearch/show-award/?AWD_ID=2607628",
+    "status": "Proposed for node review",
+    "candidate_task": "Rank candidate conditions after detecting a missing internal standard.",
+    "sources": [
+      {
+        "key": "summit",
+        "title": "Summit: Benchmarking Machine Learning Methods for Reaction Optimisation",
+        "url": "https://doi.org/10.1002/cmtd.202000051",
+        "retain": "Rank reaction conditions by observed outcomes within a constrained design space."
+      },
+      {
+        "key": "gamowlab",
+        "title": "LabBench: Can AI agents decide what experiment to run next?",
+        "url": "https://gamowlabs.com/labbench-benchmarking-ai-wet-lab-decisions",
+        "retain": "Hide subsequent experimental decisions to evaluate the next action."
+      }
+    ],
+    "adaptation": "Expose internal-standard diagnostics, injection order and quality flags. Ask the agent to rank measurable conditions and identify samples that require reinjection.",
+    "minimum_evidence_request": "One deidentified screen, chromatograms or peak areas and standards, an internal-standard-missing example, and at least one independently measured replicate.",
+    "diagnostic_holdout": "Keep all injections of one reaction condition together. Run a paired missing-standard case and score the decision to withhold an invalid yield before comparing valid ranks."
+  },
+  {
+    "award_id": "2607613",
+    "node": "PoLARIS",
+    "institution": "University of Chicago",
+    "award_source": "https://www.nsf.gov/awardsearch/show-award/?AWD_ID=2607613",
+    "status": "Proposed for node review",
+    "candidate_task": "Choose the next polymer composition after a replicated property disagrees.",
+    "sources": [
+      {
+        "key": "olympus",
+        "title": "Olympus: a benchmarking framework for noisy optimization and experiment planning",
+        "url": "https://doi.org/10.1088/2632-2153/abedc8",
+        "retain": "Benchmark experiment planning against simple optimization policies with equal budgets."
+      },
+      {
+        "key": "chemworld",
+        "title": "ChemWorld: Programmable Chemical Worlds for Controlled and Replayable Agent Experimentation",
+        "url": "https://arxiv.org/abs/2608.10792",
+        "retain": "Fork an otherwise identical observation process to isolate a hidden perturbation."
+      }
+    ],
+    "adaptation": "Represent polymer composition, processing history and repeatability separately. Charge a repeat and a novel composition against the same approved experiment budget.",
+    "minimum_evidence_request": "A small composition–property table with batch labels, replicate values, tolerances and a costed set of allowed next interventions.",
+    "diagnostic_holdout": "Hold out synthesis batches. Create one technical outlier and one reproducible batch shift and compare the value of a repeat against testing a new composition."
+  },
+  {
+    "award_id": "2607581",
+    "node": "PCL-AIMMPF",
+    "institution": "Georgia Tech",
+    "award_source": "https://www.nsf.gov/awardsearch/show-award/?AWD_ID=2607581",
+    "status": "Proposed for node review",
+    "candidate_task": "Compare manufacturing settings using matched reference coupons.",
+    "sources": [
+      {
+        "key": "bixbench3",
+        "title": "BixBench3: Benchmarking AI agents on research-study-scale computational biology tasks",
+        "url": "https://arxiv.org/abs/2608.25286",
+        "retain": "Compare derived quality-control artifacts with independent reference analysis."
+      },
+      {
+        "key": "olympus",
+        "title": "Olympus: a benchmarking framework for noisy optimization and experiment planning",
+        "url": "https://doi.org/10.1088/2632-2153/abedc8",
+        "retain": "Model uncertainty in measured material properties rather than treating each observation as an exact label."
+      }
+    ],
+    "adaptation": "Make coupons, lots and processing conditions first-class entities. Require a matched reference coupon before classifying a manufacturing setting as out of specification.",
+    "minimum_evidence_request": "A deidentified lot with test and reference coupons, the traceable measurement method, matching rules, uncertainty estimates and a specification boundary.",
+    "diagnostic_holdout": "Hold out a whole production lot. Include an otherwise plausible reference from a different lot and measure false out-of-spec alerts around the boundary."
+  },
+  {
+    "award_id": "2607526",
+    "node": "AIMD-NET",
+    "institution": "Johns Hopkins University",
+    "award_source": "https://www.nsf.gov/awardsearch/show-award/?AWD_ID=2607526",
+    "status": "Proposed for node review",
+    "candidate_task": "Route alloy samples for follow-up tests after uncertainty in a property estimate.",
+    "sources": [
+      {
+        "key": "olympus",
+        "title": "Olympus: a benchmarking framework for noisy optimization and experiment planning",
+        "url": "https://doi.org/10.1088/2632-2153/abedc8",
+        "retain": "Choose the next query using a costed experiment-planning policy."
+      },
+      {
+        "key": "gamowlab",
+        "title": "LabBench: Can AI agents decide what experiment to run next?",
+        "url": "https://gamowlabs.com/labbench-benchmarking-ai-wet-lab-decisions",
+        "retain": "Evaluate the decision at a historical cutoff with later results withheld."
+      }
+    ],
+    "adaptation": "Give the agent alloy sample histories, batch membership and candidate follow-up tests with different uncertainties and destructive-use costs.",
+    "minimum_evidence_request": "A small traceable alloy/processing series with repeated property measurements, one later confirmatory result, test costs and sample availability.",
+    "diagnostic_holdout": "Hold out a heat or production batch. Compare reduction in held-out prediction error per sample consumed, including an option to defer if evidence cannot separate treatments."
+  },
+  {
+    "award_id": "2607469",
+    "node": "ATHENA",
+    "institution": "University of Tennessee, Knoxville",
+    "award_source": "https://www.nsf.gov/awardsearch/show-award/?AWD_ID=2607469",
+    "status": "Proposed for node review",
+    "candidate_task": "Reacquire a scan region after simulated tip drift degrades an image.",
+    "sources": [
+      {
+        "key": "afmbench",
+        "title": "Evaluating large language model agents for automation of atomic force microscopy",
+        "url": "https://doi.org/10.1038/s41467-025-64105-7",
+        "retain": "Coordinate scan settings, acquisition and image analysis."
+      },
+      {
+        "key": "qdevbench",
+        "title": "Evaluating Instrument-Centered AI Agents for Table-Top Science Experiments",
+        "url": "https://arxiv.org/abs/2610.41717",
+        "retain": "Use repeatable scanning-probe tasks with instrument state."
+      },
+      {
+        "key": "labosbench",
+        "title": "LabOSBench: Benchmarking Computer Use Agents for Scientific Instrument Control",
+        "url": "https://arxiv.org/abs/2606.16802",
+        "retain": "Expose feedback-driven retuning during acquisition."
+      }
+    ],
+    "adaptation": "Inject or replay a documented drift event and charge a time or area cost for reacquisition. Distinguish sample features from motion artifacts.",
+    "minimum_evidence_request": "A before/after scan pair with a fiducial or registration reference, scan-coordinate metadata, typical drift magnitudes and operator-accepted reacquisition bounds.",
+    "diagnostic_holdout": "Hold out a scan session and its spatially adjacent patches. Check registration and usable area after recovery against withheld landmarks."
+  },
+  {
+    "award_id": "2607533",
+    "node": "ICoN-PCL",
+    "institution": "Purdue University",
+    "award_source": "https://www.nsf.gov/awardsearch/show-award/?AWD_ID=2607533",
+    "status": "Proposed for node review",
+    "candidate_task": "Select a follow-up probe to distinguish two candidate material states.",
+    "sources": [
+      {
+        "key": "qdevbench",
+        "title": "Evaluating Instrument-Centered AI Agents for Table-Top Science Experiments",
+        "url": "https://arxiv.org/abs/2610.41717",
+        "retain": "Expose real experimental control concepts through virtual instruments."
+      },
+      {
+        "key": "discoveryworld",
+        "title": "DiscoveryWorld: A Virtual Environment for Developing and Evaluating Automated Scientific Discovery Agents",
+        "url": "https://papers.nips.cc/paper_files/paper/2024/hash/13836f251823945316ae067350a5c366-Abstract-Datasets_and_Benchmarks_Track.html",
+        "retain": "Choose interventions that discriminate between hidden hypotheses."
+      }
+    ],
+    "adaptation": "Represent two candidate low-dimensional material states with overlapping evidence from one probe. Let the agent select a second probe or return an inconclusive call.",
+    "minimum_evidence_request": "Paired probe measurements on matched samples, independent reference states, calibration details and operating bounds for the proposed probe.",
+    "diagnostic_holdout": "Withhold a specimen and all its modalities together. Compare discrimination on separable cases and escalation on specimens remaining ambiguous after the allowed measurements."
+  },
+  {
+    "award_id": "2607580",
+    "node": "Self-Driving Nanofab",
+    "institution": "Virginia Tech",
+    "award_source": "https://www.nsf.gov/awardsearch/show-award/?AWD_ID=2607580",
+    "status": "Proposed for node review",
+    "candidate_task": "Reschedule a fabrication and metrology queue after a tool becomes unavailable.",
+    "sources": [
+      {
+        "key": "chemputer",
+        "title": "A universal system for digitization and automatic execution of the chemical synthesis literature",
+        "url": "https://doi.org/10.1126/science.abc2986",
+        "retain": "Use a hardware graph to enforce module availability and procedural precedence."
+      },
+      {
+        "key": "labosbench",
+        "title": "LabOSBench: Benchmarking Computer Use Agents for Scientific Instrument Control",
+        "url": "https://arxiv.org/abs/2606.16802",
+        "retain": "Check the state required for individual instrument operations."
+      }
+    ],
+    "adaptation": "Represent a wafer, process windows, metrology and a scheduled outage. Restrict routing to node-reviewed tool compatibility and hold-time limits.",
+    "minimum_evidence_request": "A sanitized process traveler, tool capability and outage records, a time-window constraint, and a measured dimension with its metrology uncertainty.",
+    "diagnostic_holdout": "Hold out an outage pattern or tool pairing. Reject a schedule that meets its deadline by violating precedence, and validate predicted dimensions only on a matched measured part."
+  },
+  {
+    "award_id": "2607536",
+    "node": "LATTICE",
+    "institution": "Penn State",
+    "award_source": "https://www.nsf.gov/awardsearch/show-award/?AWD_ID=2607536",
+    "status": "Proposed for node review",
+    "candidate_task": "Identify a thickness gradient from spatially sparse metrology and choose new sites.",
+    "sources": [
+      {
+        "key": "qdevbench",
+        "title": "Evaluating Instrument-Centered AI Agents for Table-Top Science Experiments",
+        "url": "https://arxiv.org/abs/2610.41717",
+        "retain": "Select spatial measurement points under an instrument action budget."
+      },
+      {
+        "key": "olympus",
+        "title": "Olympus: a benchmarking framework for noisy optimization and experiment planning",
+        "url": "https://doi.org/10.1088/2632-2153/abedc8",
+        "retain": "Compare adaptive sampling against an equal-budget baseline."
+      }
+    ],
+    "adaptation": "Provide sparse wafer sites and allow selection of new metrology locations. Use the node’s coordinate convention, edge exclusion and thickness uncertainty.",
+    "minimum_evidence_request": "A dense reference wafer map, the corresponding sparse sample sites, stage limits or forbidden regions, and a repeat-measurement noise estimate.",
+    "diagnostic_holdout": "Hold out an entire wafer. Hide regions inside it until final scoring and compare prediction error, edge coverage and measurements consumed."
+  },
+  {
+    "award_id": "2607577",
+    "node": "Electronics Prototyping",
+    "institution": "ADOM Industries",
+    "award_source": "https://www.nsf.gov/awardsearch/show-award/?AWD_ID=2607577",
+    "status": "Proposed for node review",
+    "candidate_task": "Estimate component resistance from a simulated sweep with a bad contact.",
+    "sources": [
+      {
+        "key": "qdevbench",
+        "title": "Evaluating Instrument-Centered AI Agents for Table-Top Science Experiments",
+        "url": "https://arxiv.org/abs/2610.41717",
+        "retain": "Retain instrument-compliance constraints and swept electrical measurements."
+      },
+      {
+        "key": "safelab",
+        "title": "SafeLab: An Interactive High-Fidelity Benchmark for Embodied Safety in Scientific Robotics",
+        "url": "https://proceedings.mlr.press/v306/bai26e.html",
+        "retain": "Grade violations over the entire trajectory even if the end estimate is accurate."
+      }
+    ],
+    "adaptation": "Use a node-reviewed contact model and signed current or voltage sweeps. Ask the agent to diagnose a bad contact, respect compliance and estimate component resistance.",
+    "minimum_evidence_request": "A sweep on a known component, an offset or open-contact example, approved compliance limits and an independently calibrated reference resistance.",
+    "diagnostic_holdout": "Withhold one component lot or fixture. Compare estimates before and after contact recovery and check whether any command exceeded the allowed envelope."
+  },
+  {
+    "award_id": "2607553",
+    "node": "READINESS",
+    "institution": "Rice University",
+    "award_source": "https://www.nsf.gov/awardsearch/show-award/?AWD_ID=2607553",
+    "status": "Proposed for node review",
+    "candidate_task": "Choose a follow-up characterization after a candidate film misses its target.",
+    "sources": [
+      {
+        "key": "alab",
+        "title": "An autonomous laboratory for the accelerated synthesis of inorganic materials",
+        "url": "https://doi.org/10.1038/s41586-023-06734-w",
+        "retain": "Close a materials synthesis loop using independent characterization evidence."
+      },
+      {
+        "key": "xrdbench",
+        "title": "AutoXRD: Autonomous LLM Agents and Comprehensive Evaluation for Powder Diffraction Analysis",
+        "url": "https://arxiv.org/abs/2609.00070",
+        "retain": "Check structural plausibility before accepting a numerical fit."
+      },
+      {
+        "key": "summit",
+        "title": "Summit: Benchmarking Machine Learning Methods for Reaction Optimisation",
+        "url": "https://doi.org/10.1002/cmtd.202000051",
+        "retain": "Compare candidate choices under a finite experimental budget."
+      }
+    ],
+    "adaptation": "Choose a follow-up test for a semiconductor film that missed a target property. Link each available technique to an operator-reviewed hypothesis and cost.",
+    "minimum_evidence_request": "A film batch with preparation metadata, one approved structural or electronic characterization, a confirmatory property measurement and availability or cost for each probe.",
+    "diagnostic_holdout": "Hold out a deposition batch. Verify candidate order against matched follow-up measurements and give credit for unresolved calls when the available characterization is nonidentifying."
+  },
+  {
+    "award_id": "2607535",
+    "node": "AURORA",
+    "institution": "University of Utah",
+    "award_source": "https://www.nsf.gov/awardsearch/show-award/?AWD_ID=2607535",
+    "status": "Proposed for node review",
+    "candidate_task": "Decide whether a stacked flake is aligned well enough for transport measurement.",
+    "sources": [
+      {
+        "key": "qdevbench",
+        "title": "Evaluating Instrument-Centered AI Agents for Table-Top Science Experiments",
+        "url": "https://arxiv.org/abs/2610.41717",
+        "retain": "Tie measurement readiness to stateful transport-instrument controls."
+      },
+      {
+        "key": "beaker",
+        "title": "BEAKER: An Expert-Curated Benchmark for Embodied Brains in Self-Driving Chemical Laboratories",
+        "url": "https://arxiv.org/abs/2611.06911",
+        "retain": "Use image-based questions to check whether a visible physical state supports the next action."
+      }
+    ],
+    "adaptation": "Replace generic scene understanding with flake-edge alignment and a node-approved decision about proceeding to transport measurements. Permit escalation for ambiguous images.",
+    "minimum_evidence_request": "Registered images of aligned, misaligned and ambiguous stacks, pixel scale, operator annotations and the tolerance used before transfer to a measurement stage.",
+    "diagnostic_holdout": "Keep every crop and repeat image from the same stack in one split. Compare angular or positional error and the rate of approving out-of-tolerance stacks."
+  }
+]

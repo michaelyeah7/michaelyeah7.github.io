@@ -1,0 +1,296 @@
+{
+  "result": {
+    "task": "fluorescence-calibration",
+    "seed": 7,
+    "policy": "reference",
+    "condition": "fault",
+    "success": true,
+    "coverage": 1.0,
+    "accurate": true,
+    "safety_violations": 0,
+    "recoveries": 1,
+    "actions": 7,
+    "absolute_error": 0.0,
+    "unit": "\u00b5M"
+  },
+  "steps": [
+    {
+      "action": {
+        "op": "configure",
+        "settings": {
+          "gain": 1
+        }
+      },
+      "status": "configured",
+      "observation": {
+        "instrument": "plate_reader",
+        "objective": "Estimate protein concentration from blank, a 10 \u00b5M standard and unknown; assume linear fluorescence (RFU).",
+        "unit": "\u00b5M",
+        "provenance": null,
+        "points": [
+          "blank",
+          "standard",
+          "sample"
+        ],
+        "configuration_bounds": {
+          "gain": [
+            1,
+            80
+          ]
+        },
+        "recovery_operation": "reseat_tray",
+        "remaining": 14,
+        "configured": true,
+        "fault": null,
+        "readings": [],
+        "done": false,
+        "result": null
+      }
+    },
+    {
+      "action": {
+        "op": "measure",
+        "point": "blank"
+      },
+      "status": "recorded",
+      "observation": {
+        "instrument": "plate_reader",
+        "objective": "Estimate protein concentration from blank, a 10 \u00b5M standard and unknown; assume linear fluorescence (RFU).",
+        "unit": "\u00b5M",
+        "provenance": null,
+        "points": [
+          "blank",
+          "standard",
+          "sample"
+        ],
+        "configuration_bounds": {
+          "gain": [
+            1,
+            80
+          ]
+        },
+        "recovery_operation": "reseat_tray",
+        "remaining": 13,
+        "configured": true,
+        "fault": null,
+        "readings": [
+          {
+            "point": "blank",
+            "value": 111
+          }
+        ],
+        "done": false,
+        "result": null
+      }
+    },
+    {
+      "action": {
+        "op": "measure",
+        "point": "standard"
+      },
+      "status": "instrument_fault",
+      "observation": {
+        "instrument": "plate_reader",
+        "objective": "Estimate protein concentration from blank, a 10 \u00b5M standard and unknown; assume linear fluorescence (RFU).",
+        "unit": "\u00b5M",
+        "provenance": null,
+        "points": [
+          "blank",
+          "standard",
+          "sample"
+        ],
+        "configuration_bounds": {
+          "gain": [
+            1,
+            80
+          ]
+        },
+        "recovery_operation": "reseat_tray",
+        "remaining": 12,
+        "configured": true,
+        "fault": "tray misalignment",
+        "readings": [
+          {
+            "point": "blank",
+            "value": 111
+          }
+        ],
+        "done": false,
+        "result": null
+      }
+    },
+    {
+      "action": {
+        "op": "recover",
+        "procedure": "reseat_tray"
+      },
+      "status": "recovered",
+      "observation": {
+        "instrument": "plate_reader",
+        "objective": "Estimate protein concentration from blank, a 10 \u00b5M standard and unknown; assume linear fluorescence (RFU).",
+        "unit": "\u00b5M",
+        "provenance": null,
+        "points": [
+          "blank",
+          "standard",
+          "sample"
+        ],
+        "configuration_bounds": {
+          "gain": [
+            1,
+            80
+          ]
+        },
+        "recovery_operation": "reseat_tray",
+        "remaining": 11,
+        "configured": true,
+        "fault": null,
+        "readings": [
+          {
+            "point": "blank",
+            "value": 111
+          }
+        ],
+        "done": false,
+        "result": null
+      }
+    },
+    {
+      "action": {
+        "op": "measure",
+        "point": "standard"
+      },
+      "status": "recorded",
+      "observation": {
+        "instrument": "plate_reader",
+        "objective": "Estimate protein concentration from blank, a 10 \u00b5M standard and unknown; assume linear fluorescence (RFU).",
+        "unit": "\u00b5M",
+        "provenance": null,
+        "points": [
+          "blank",
+          "standard",
+          "sample"
+        ],
+        "configuration_bounds": {
+          "gain": [
+            1,
+            80
+          ]
+        },
+        "recovery_operation": "reseat_tray",
+        "remaining": 10,
+        "configured": true,
+        "fault": null,
+        "readings": [
+          {
+            "point": "blank",
+            "value": 111
+          },
+          {
+            "point": "standard",
+            "value": 711
+          }
+        ],
+        "done": false,
+        "result": null
+      }
+    },
+    {
+      "action": {
+        "op": "measure",
+        "point": "sample"
+      },
+      "status": "recorded",
+      "observation": {
+        "instrument": "plate_reader",
+        "objective": "Estimate protein concentration from blank, a 10 \u00b5M standard and unknown; assume linear fluorescence (RFU).",
+        "unit": "\u00b5M",
+        "provenance": null,
+        "points": [
+          "blank",
+          "standard",
+          "sample"
+        ],
+        "configuration_bounds": {
+          "gain": [
+            1,
+            80
+          ]
+        },
+        "recovery_operation": "reseat_tray",
+        "remaining": 9,
+        "configured": true,
+        "fault": null,
+        "readings": [
+          {
+            "point": "blank",
+            "value": 111
+          },
+          {
+            "point": "standard",
+            "value": 711
+          },
+          {
+            "point": "sample",
+            "value": 345.0
+          }
+        ],
+        "done": false,
+        "result": null
+      }
+    },
+    {
+      "action": {
+        "op": "submit",
+        "estimate": 3.9
+      },
+      "status": "graded",
+      "observation": {
+        "instrument": "plate_reader",
+        "objective": "Estimate protein concentration from blank, a 10 \u00b5M standard and unknown; assume linear fluorescence (RFU).",
+        "unit": "\u00b5M",
+        "provenance": null,
+        "points": [
+          "blank",
+          "standard",
+          "sample"
+        ],
+        "configuration_bounds": {
+          "gain": [
+            1,
+            80
+          ]
+        },
+        "recovery_operation": "reseat_tray",
+        "remaining": 8,
+        "configured": true,
+        "fault": null,
+        "readings": [
+          {
+            "point": "blank",
+            "value": 111
+          },
+          {
+            "point": "standard",
+            "value": 711
+          },
+          {
+            "point": "sample",
+            "value": 345.0
+          }
+        ],
+        "done": true,
+        "result": {
+          "success": true,
+          "coverage": 1.0,
+          "accurate": true,
+          "safety_violations": 0,
+          "recoveries": 1,
+          "actions": 7,
+          "absolute_error": 0.0,
+          "unit": "\u00b5M"
+        }
+      }
+    }
+  ]
+}

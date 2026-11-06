@@ -1,0 +1,91 @@
+{
+  "source_commit": "1de682d05e97adcfb96cd8376e876cef2d6160d3",
+  "sha256_by_case": [
+    "346d976b89241662965f047b6725a9972941afb4c12105e82947cf9e2a27a450",
+    "20f648b7e48a40059d4ba990161d0ad21cf255c45cdc90e6fa52a0e9b4150f3f",
+    "cb57a2a8a4075ff312508e48673b3b4f22667b8fc609f7c60b57bb4f357a36b9",
+    "fb2f2bd7eae04495f75a91996e309cc3f4f688a4fa02d7ef9e556246ce8bbf75"
+  ],
+  "rows": [
+    {
+      "case": 1,
+      "source_records": 96,
+      "candidate_settings": 81,
+      "policy": "random",
+      "campaigns": 20,
+      "budget": 10,
+      "mean_best_yield_pct": 84.71733333333333,
+      "mean_simple_regret_pp": 13.98266666666667
+    },
+    {
+      "case": 1,
+      "source_records": 96,
+      "candidate_settings": 81,
+      "policy": "local-greedy",
+      "campaigns": 20,
+      "budget": 10,
+      "mean_best_yield_pct": 88.625,
+      "mean_simple_regret_pp": 10.075000000000003
+    },
+    {
+      "case": 2,
+      "source_records": 96,
+      "candidate_settings": 80,
+      "policy": "random",
+      "campaigns": 20,
+      "budget": 10,
+      "mean_best_yield_pct": 28.786,
+      "mean_simple_regret_pp": 14.426499999999999
+    },
+    {
+      "case": 2,
+      "source_records": 96,
+      "candidate_settings": 80,
+      "policy": "local-greedy",
+      "campaigns": 20,
+      "budget": 10,
+      "mean_best_yield_pct": 32.3575,
+      "mean_simple_regret_pp": 10.854999999999999
+    },
+    {
+      "case": 3,
+      "source_records": 96,
+      "candidate_settings": 93,
+      "policy": "random",
+      "campaigns": 20,
+      "budget": 10,
+      "mean_best_yield_pct": 88.52,
+      "mean_simple_regret_pp": 5.579999999999994
+    },
+    {
+      "case": 3,
+      "source_records": 96,
+      "candidate_settings": 93,
+      "policy": "local-greedy",
+      "campaigns": 20,
+      "budget": 10,
+      "mean_best_yield_pct": 90.465,
+      "mean_simple_regret_pp": 3.6349999999999936
+    },
+    {
+      "case": 4,
+      "source_records": 97,
+      "candidate_settings": 95,
+      "policy": "random",
+      "campaigns": 20,
+      "budget": 10,
+      "mean_best_yield_pct": 94.2,
+      "mean_simple_regret_pp": 5.599999999999998
+    },
+    {
+      "case": 4,
+      "source_records": 97,
+      "candidate_settings": 95,
+      "policy": "local-greedy",
+      "campaigns": 20,
+      "budget": 10,
+      "mean_best_yield_pct": 94.18,
+      "mean_simple_regret_pp": 5.6199999999999966
+    }
+  ]
+}
