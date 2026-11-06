@@ -151,7 +151,27 @@ loadData('data/clips.json').then(({clips,readouts})=>{
     lab.textContent=String(r.label||'').toUpperCase();d.append(v,lab);
     if(r.note){const n=document.createElement('small');n.textContent=r.note;d.append(n)}
     return d}));
-  let active='all',current=null;
+
+  let active='all',current=null,previewing=null,hoverTimer=null;
+  function stopPreview(card){
+    if(!card)return;
+    card.classList.remove('previewing');
+    const v=card.querySelector('video'),bar=card.querySelector('.bar');
+    if(bar)bar.style.width='0';
+    if(v){try{v.pause()}catch(e){}
+      if(v.getAttribute('src')){v.removeAttribute('src');try{v.load()}catch(e){}}}
+    if(previewing===card)previewing=null;
+  }
+  function startPreview(card){
+    if(reduceMotion.matches||card===previewing)return;
+    if(previewing)stopPreview(previewing);
+    const v=card.querySelector('video');if(!v)return;
+    if(!v.getAttribute('src'))v.setAttribute('src','media/'+card.dataset.id+'.mp4');
+    previewing=card;
+    const go=v.play();
+    if(go&&go.then)go.then(()=>{if(previewing===card)card.classList.add('previewing')}).catch(()=>{});
+    else card.classList.add('previewing');
+  }
   function show(c,autoplay){
     current=c.id;
     el('film-id').textContent=c.id;
@@ -169,22 +189,37 @@ loadData('data/clips.json').then(({clips,readouts})=>{
     for(const b of grid.children)b.setAttribute('aria-current',b.dataset.id===c.id?'true':'false');
     if(autoplay)player.play().catch(()=>{});
   }
+  function card(c){
+    const b=document.createElement('button');b.type='button';b.className='filmcard';b.dataset.id=c.id;
+    b.setAttribute('aria-current',c.id===current?'true':'false');
+    const shot=document.createElement('span');shot.className='shot';
+    const img=document.createElement('img');img.src='media/'+c.id+'.jpg';img.loading='lazy';img.decoding='async';img.alt='';img.width=320;img.height=180;
+    const v=document.createElement('video');v.muted=true;v.loop=true;v.playsInline=true;v.preload='none';v.setAttribute('aria-hidden','true');v.tabIndex=-1;
+    const bar=document.createElement('span');bar.className='bar';
+    shot.append(img,v,bar);
+    const tag=document.createElement('span');tag.className='tag';tag.textContent=c.id;
+    const play=document.createElement('span');play.className='play';play.setAttribute('aria-hidden','true');
+    const meta=document.createElement('span');meta.className='meta';
+    const t=document.createElement('b');t.textContent=c.title;
+    const sub=document.createElement('span');
+    sub.textContent=[c.seconds?Math.round(c.seconds)+'s':'',filmNames[c.section]||c.section].filter(Boolean).join(' · ');
+    meta.append(t,sub);b.append(shot,tag,play,meta);
+    v.addEventListener('timeupdate',()=>{if(v.duration)bar.style.width=(100*v.currentTime/v.duration)+'%'});
+    b.addEventListener('pointerenter',e=>{
+      if(e.pointerType==='touch')return;
+      clearTimeout(hoverTimer);hoverTimer=setTimeout(()=>startPreview(b),110)});
+    b.addEventListener('pointerleave',()=>{clearTimeout(hoverTimer);stopPreview(b)});
+    b.addEventListener('focus',()=>startPreview(b));
+    b.addEventListener('blur',()=>stopPreview(b));
+    b.addEventListener('click',()=>{stopPreview(b);show(c,true);
+      el('film-player').scrollIntoView({block:'center',behavior:reduceMotion.matches?'auto':'smooth'})});
+    return b;
+  }
   function render(){
+    if(previewing)stopPreview(previewing);
     const list=clips.filter(c=>active==='all'||c.section===active);
-    el('film-count').textContent=list.length+' clip'+(list.length===1?'':'s')+(active==='all'?' in eight groups':' \u00b7 '+(filmNames[active]||active));
-    grid.replaceChildren(...list.map(c=>{
-      const b=document.createElement('button');b.type='button';b.className='filmcard';b.dataset.id=c.id;
-      b.setAttribute('aria-current',c.id===current?'true':'false');
-      const img=document.createElement('img');img.src='media/'+c.id+'.jpg';img.loading='lazy';img.decoding='async';img.alt='';img.width=320;img.height=180;
-      const tag=document.createElement('span');tag.className='tag';tag.textContent=c.id;
-      const play=document.createElement('span');play.className='play';play.setAttribute('aria-hidden','true');
-      const meta=document.createElement('span');meta.className='meta';
-      const t=document.createElement('b');t.textContent=c.title;
-      const sub=document.createElement('span');
-      sub.textContent=[c.seconds?Math.round(c.seconds)+'s':'',filmNames[c.section]||c.section].filter(Boolean).join(' \u00b7 ');
-      meta.append(t,sub);b.append(img,tag,play,meta);
-      b.addEventListener('click',()=>show(c,true));
-      return b}));
+    el('film-count').textContent=list.length+' clip'+(list.length===1?'':'s')+(active==='all'?' in eight groups · hover to preview':' · '+(filmNames[active]||active));
+    grid.replaceChildren(...list.map(card));
   }
   const groups=['all',...[...new Set(clips.map(c=>c.section))].sort((a,b)=>a.localeCompare(b))];
   filters.replaceChildren(...groups.map(g=>{
@@ -192,6 +227,7 @@ loadData('data/clips.json').then(({clips,readouts})=>{
     btn.setAttribute('aria-pressed',g===active?'true':'false');
     btn.addEventListener('click',()=>{active=g;for(const x of filters.children)x.setAttribute('aria-pressed',x===btn?'true':'false');render()});
     return btn}));
+  document.addEventListener('visibilitychange',()=>{if(document.hidden&&previewing)stopPreview(previewing)});
   show(clips.find(c=>c.id==='A1')||clips[0],false);
   render();
 }).catch(()=>{const g=el('film-count');if(g)g.textContent='Clip index unavailable.'});
