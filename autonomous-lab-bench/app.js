@@ -277,12 +277,11 @@ loadData('data/clips.json').then(({clips,readouts})=>{
     const bar=document.createElement('span');bar.className='bar';
     shot.append(img,v,bar);
     const tag=document.createElement('span');tag.className='tag';tag.textContent=c.id;
-    const play=document.createElement('span');play.className='play';play.setAttribute('aria-hidden','true');
     const meta=document.createElement('span');meta.className='meta';
     const t=document.createElement('b');t.textContent=c.title;
     const sub=document.createElement('span');
     sub.textContent=[c.seconds?Math.round(c.seconds)+'s':'',filmNames[c.section]||c.section].filter(Boolean).join(' · ');
-    meta.append(t,sub);b.append(shot,tag,play,meta);
+    meta.append(t,sub);b.append(shot,tag,meta);
     b.setAttribute('aria-label','Play '+c.title);
     v.addEventListener('timeupdate',()=>{if(v.duration)bar.style.width=(100*v.currentTime/v.duration)+'%'});
     b.addEventListener('pointerenter',e=>{

@@ -29,15 +29,13 @@
 .filmcard{position:relative;display:block;width:100%;text-align:left;padding:0;background:#16282f;border:1px solid #3a525a;border-radius:8px;overflow:hidden;color:inherit;transition:border-color .2s,transform .2s,box-shadow .2s}
 .filmcard:hover,.filmcard:focus-visible{border-color:var(--mint);transform:translateY(-3px);box-shadow:0 16px 36px #04161bc0}
 .filmcard[aria-current=true]{border-color:var(--mint);box-shadow:inset 0 0 0 1px var(--mint)}
-.filmcard .shot{position:relative;display:block;aspect-ratio:16/9;overflow:hidden;background:#0d1f25}.filmcard .shot img,.filmcard .shot video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}.filmcard .shot video{opacity:0;transition:opacity .28s ease}.filmcard .shot img{transition:opacity .28s ease,transform .5s ease}.filmcard.previewing .shot video{opacity:1}.filmcard.previewing .shot img{opacity:0}.filmcard:hover .shot img{transform:scale(1.04)}.filmcard .bar{position:absolute;left:0;bottom:0;height:2px;width:0;z-index:3;background:var(--mint);box-shadow:0 0 9px #7af2bd;transition:width .12s linear}.filmcard.previewing .tag{background:var(--mint);border-color:var(--mint);color:#0b2a23}.filmcard.previewing .play{opacity:0}
+.filmcard .shot{position:relative;display:block;aspect-ratio:16/9;overflow:hidden;background:#0d1f25}.filmcard .shot img,.filmcard .shot video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}.filmcard .shot video{opacity:0;transition:opacity .28s ease}.filmcard .shot img{transition:opacity .28s ease,transform .5s ease}.filmcard.previewing .shot video{opacity:1}.filmcard.previewing .shot img{opacity:0}.filmcard:hover .shot img{transform:scale(1.04)}.filmcard .bar{position:absolute;left:0;bottom:0;height:2px;width:0;z-index:3;background:var(--mint);box-shadow:0 0 9px #7af2bd;transition:width .12s linear}.filmcard.previewing .tag{background:var(--mint);border-color:var(--mint);color:#0b2a23}
 .filmcard .meta{display:block;padding:9px 11px 11px}
 .filmcard .meta b{display:block;font-size:13px;font-weight:600;line-height:1.3;color:#e3f1ec}
 .filmcard .meta span{display:block;font:10px var(--mono);letter-spacing:.08em;color:#8fabae;margin-top:4px}
 .filmcard .tag{position:absolute;top:7px;left:7px;font:10px var(--mono);font-weight:700;background:#0b1d22d9;border:1px solid #4e6a70;color:var(--mint);padding:2px 6px;border-radius:3px}
-.filmcard .play{position:absolute;top:50%;left:50%;z-index:2;transform:translate(-50%,-50%);width:38px;height:38px;border-radius:50%;background:#0b1d22b3;border:1px solid #9fe9c6;display:grid;place-items:center;opacity:0;transition:opacity .16s}
-.filmcard:hover .play,.filmcard:focus-visible .play{opacity:1}
-.filmcard .play:after{content:'';border-left:10px solid var(--mint);border-block:6px solid transparent;margin-left:3px}
-.filmcard.previewing:hover .play,.filmcard.previewing:focus-visible .play{opacity:0}
+
+
 @media(max-width:850px){.readouts{grid-template-columns:repeat(3,1fr)}}
 @media(max-width:680px){.brand .wide{display:none}.brand .narrow{display:inline}.readouts{grid-template-columns:repeat(2,1fr);margin-top:22px}.theatre{margin-top:22px}.filmgrid{grid-template-columns:repeat(auto-fill,minmax(148px,1fr));gap:9px}.filmbar{margin:26px 0 12px}.stagefoot{padding:13px 14px}.films h2 br{display:none}}
 .lightbox{width:min(1080px,92vw);max-width:none;padding:0;border:1px solid #4a626b;border-radius:10px;background:#0e2026;color:#eef6ee;box-shadow:0 40px 120px #020c0fcc}
