@@ -117,6 +117,14 @@ figure{margin:0}
 figcaption{font-size:13.5px;color:var(--muted);margin-top:12px;max-width:80ch}
 figcaption b{color:var(--ink);font-weight:600}
 
+.paper-card{margin-top:64px;display:grid;grid-template-columns:200px minmax(0,1fr);gap:32px;align-items:center;padding:24px;border:1px solid var(--rule);border-radius:12px;background:var(--sheet);text-decoration:none;color:inherit;transition:border-color .15s}
+.paper-card:hover{border-color:var(--accent)}
+.paper-card img{width:100%;height:auto;border:1px solid var(--rule);border-radius:4px;background:#fff;box-shadow:0 6px 18px -10px rgba(20,26,34,.35)}
+.paper-card-body{display:grid;gap:10px;align-content:center}
+.paper-card h3{font-size:clamp(22px,2.4vw,28px);line-height:1.15}
+.paper-card p{font-size:15px;color:var(--muted);max-width:64ch}
+.paper-cta{font-weight:600;color:var(--accent);font-size:15px}
+@media (max-width:640px){.paper-card{grid-template-columns:minmax(0,1fr)}.paper-card img{max-width:220px}}
 .loops{margin-top:64px;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.5fr);gap:48px;align-items:center}
 .loop-list{display:grid;gap:22px}
 .loop-list li{list-style:none;display:grid;grid-template-columns:34px minmax(0,1fr);gap:12px}
@@ -251,11 +259,10 @@ footer small{font-size:12.5px;opacity:.6}
         <img src="media/me.jpg" alt="Portrait of Guo Ye" width="52" height="52">
         <div><b>Guo Ye</b><br><span class="muted" style="font-size:14px">Data Scientist · DREAM Cloud Lab, Northwestern University</span></div>
       </div>
-      <h1>I build <em>AI scientists</em> that design experiments, run them on robots, and learn from what comes back.</h1>
-      <p class="lede">I work where <strong>AI, biology and robotics</strong> meet. I lead <strong>DREAM Brain</strong>, the AI layer of Northwestern's DREAM Cloud Lab for protein engineering. Before that I built tactile robot foundation models and the systems that take robot learning from notebook to deployment.</p>
+      <h1>I build <em>AI scientists</em> that design experiments, run them on lab robots, and improve themselves from every result.</h1>
+      <p class="lede">I work where <strong>AI, biology and robotics</strong> meet. I lead <strong>DREAM Brain</strong>, the AI scientist of Northwestern's DREAM Cloud Lab for protein engineering, built for recursive self-improvement (RSI). Before that I built tactile robot foundation models and the systems that take robot learning from notebook to deployment.</p>
       <div class="cta">
         <a class="btn primary" href="#dream-brain">See DREAM Brain</a>
-        <a class="btn" href="autonomous-lab-bench/">Explore Autonomous Lab Bench</a>
         <a class="btn" href="Guo_Ye_CV.pdf" target="_blank" rel="noopener">CV (PDF)</a>
         <a class="btn" href="https://scholar.google.com/citations?user=lZt-Ij8AAAAJ" target="_blank" rel="noopener">Google Scholar</a>
         <a class="btn" href="https://github.com/michaelyeah7" target="_blank" rel="noopener">GitHub</a>
@@ -289,12 +296,13 @@ footer small{font-size:12.5px;opacity:.6}
       <div class="prose">
         <p class="claim">An AI scientist is not a bigger model on the same data. It is a model trained on decisions.</p>
         <p style="margin-top:24px">Lab automation already moved <em>execution</em> to machines. Judgement did not move: why an experiment exists, which alternatives were rejected, what outcome was expected. That reasoning stays in someone's head and is gone after the round.</p>
-        <p>DREAM Brain is the intelligence layer that sits in the middle of the design–build–test–learn loop. It reads the literature, proposes protein designs, commits predictions before the plate goes in, drives the robots and instruments, and learns from the results. Every step is written down as <b>Scientific Process Data</b>, which becomes the training signal for the next, better version of the system.</p>
+        <p>DREAM Brain is the intelligence layer that sits in the middle of the design–build–test–learn loop. It reads the literature, proposes protein designs, commits predictions before the plate goes in, drives the robots and instruments, and learns from the results. Every step is written down as <b>Scientific Process Data</b>, so the reasoning and outcome of every experiment become training data for the next, better version of the system. That recursive self-improvement (RSI) loop is the core of DREAM Brain.</p>
       </div>
       <dl class="meta-list">
         <div><dt class="k">Role</dt><dd style="margin:0">Lead architect of DREAM Brain; Data &amp; AI for the DREAM Cloud Lab</dd></div>
         <div><dt class="k">Where</dt><dd style="margin:0">DREAM Cloud Lab for Protein Engineering, Northwestern Center for Synthetic Biology</dd></div>
         <div><dt class="k">With</dt><dd style="margin:0"><a href="https://luckslab.org/" target="_blank" rel="noopener">Julius Lucks</a>, <a href="https://magics.cs.northwestern.edu/people.html" target="_blank" rel="noopener">Han Liu</a>, <a href="https://dtelab.northwestern.edu/" target="_blank" rel="noopener">Danielle Tullman-Ercek</a>, <a href="https://bioengineering.stanford.edu/people/michael-jewett" target="_blank" rel="noopener">Michael Jewett</a>, and the DREAM science teams</dd></div>
+        <div><dt class="k">Paper</dt><dd style="margin:0"><a href="media/DREAM_Brain_RSI.pdf" target="_blank" rel="noopener">DREAM Brain: Recursive Science Improvement</a> · working manuscript</dd></div>
         <div><dt class="k">Stack</dt><dd style="margin:0">LLM agents · SFT / GRPO post-training · AlphaFold 3 · RFdiffusion · LigandMPNN · BoltzGen · Opentrons / Echo / cell-free expression · digital twin</dd></div>
       </dl>
     </div>
@@ -310,6 +318,16 @@ footer small{font-size:12.5px;opacity:.6}
         <figcaption><b>Three nested loops.</b> Each loop feeds a more complete record to the one above it.</figcaption>
       </figure>
     </div>
+
+    <a class="paper-card" href="media/DREAM_Brain_RSI.pdf" target="_blank" rel="noopener">
+      <img src="media/dream_brain_rsi_p1.jpg" alt="First page of the DREAM Brain manuscript" loading="lazy" width="900" height="1164">
+      <div class="paper-card-body">
+        <span class="label">Working manuscript · 13 pages · PDF</span>
+        <h3>DREAM Brain: Recursive Science Improvement</h3>
+        <p>The full architecture: a campaign contract that makes scientific intent executable, Scientific Process Data as the record an AI scientist learns from, the three coupled loops, the lab-automation and digital-twin interfaces, a RamR biosensor pilot, and an evaluation program for a learning cloud lab.</p>
+        <span class="paper-cta">Read the manuscript →</span>
+      </div>
+    </a>
 
   </div>
 </section>
