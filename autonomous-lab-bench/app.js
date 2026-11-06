@@ -23,18 +23,35 @@ const stateLines=svg('path',{fill:'none',stroke:'#4e777f','stroke-opacity':'.45'
 const beam=svg('path',{fill:'none',stroke:'#7be6b7','stroke-opacity':'.5','stroke-width':'1.4','stroke-dasharray':'5 5','pointer-events':'none'},link);
 const plansByAward=new Map();
 let selected=0,elapsed=0,playing=!reduceMotion.matches,last=0,inView=true,roster=null,places=[],controls=[];
+function spread(nodes){
+  // Geography stays exact in the data; this only nudges markers that would collide
+  // on screen (College Park and Baltimore sit ~45 km apart) so each stays clickable.
+  const p=nodes.map(n=>({...n})),MIN=19;
+  for(let pass=0;pass<80;pass++){
+    let moved=false;
+    for(let i=0;i<p.length;i++)for(let j=i+1;j<p.length;j++){
+      let dx=p[j].x-p[i].x,dy=p[j].y-p[i].y;const d=Math.hypot(dx,dy);
+      if(d>=MIN||d===0)continue;
+      const push=(MIN-d)/2/d;dx*=push;dy*=push;
+      p[i].x-=dx;p[i].y-=dy;p[j].x+=dx;p[j].y+=dy;moved=true;
+    }
+    if(!moved)break;
+  }
+  return p;
+}
 function buildMap(m){
   if(!m||!m.nation||!Array.isArray(m.nodes))return;
   nationShape.setAttribute('d',m.nation);
   stateLines.setAttribute('d',m.states||'');
-  places=m.nodes;
+  places=spread(m.nodes);
   controls=places.map((p,id)=>{
     const group=svg('g',{'class':'orbit-node',role:'button',tabindex:id===0?0:-1,
       'aria-label':p.name+' — '+p.institution+', '+p.city,transform:'translate('+p.x+' '+p.y+')'},dots);
-    svg('circle',{r:15,fill:'transparent'},group);
-    const halo=svg('circle',{r:9,fill:'none',stroke:'#7bedbc','stroke-width':'1.2'},group);
-    const dot=svg('circle',{r:id===0?5.8:4.2,'class':'dot'},group);
-    const lab=svg('text',{y:-16,'font-size':12,'font-family':'monospace','text-anchor':'middle','pointer-events':'none'},group);
+    svg('circle',{r:21,fill:'transparent'},group);
+    if(id===0)svg('circle',{r:17,fill:'none',stroke:'#7af2bd','stroke-opacity':'.4','stroke-width':'1','stroke-dasharray':'3 4'},group);
+    const halo=svg('circle',{r:12,fill:'none',stroke:'#7bedbc','stroke-width':'1.3'},group);
+    const dot=svg('circle',{r:id===0?8.4:6,'class':'dot'},group);
+    const lab=svg('text',{y:id===0?-22:-20,'font-size':id===0?13:12,'font-family':'monospace','text-anchor':'middle','pointer-events':'none'},group);
     lab.textContent=p.name;
     group.addEventListener('click',()=>pick(id));
     group.addEventListener('keydown',e=>{
@@ -47,14 +64,14 @@ function buildMap(m){
 function drawAtlas(){
   if(!controls.length)return;
   controls.forEach(({dot,halo,lab},i)=>{
-    const on=i===selected,pulse=playing?1+.16*Math.sin(elapsed*2.1+i*.6):1;
-    dot.setAttribute('fill',on?'#a1f5ca':i===0?'#8ad7b5':'#6f9fa8');
-    dot.setAttribute('stroke',on?'#effff5':'#102a30');
-    dot.setAttribute('stroke-width',on?'1.7':'1');
-    halo.setAttribute('r',((on?13:9)*(on?pulse:1)).toFixed(2));
-    halo.setAttribute('opacity',on?'.95':i===0?'.3':'0');
-    lab.setAttribute('opacity',on?'1':'0');
-    lab.setAttribute('fill','#d9ffe9')});
+    const on=i===selected,home=i===0,pulse=playing?1+.14*Math.sin(elapsed*2.1+i*.6):1;
+    dot.setAttribute('fill',on?'#b6ffd9':home?'#8ff0c0':'#7fb0b8');
+    dot.setAttribute('stroke',on?'#effff5':home?'#9ff0c8':'#0f272d');
+    dot.setAttribute('stroke-width',on?'2':home?'1.6':'1.1');
+    halo.setAttribute('r',((on?17:home?13.5:12)*(on?pulse:1)).toFixed(2));
+    halo.setAttribute('opacity',on?'.95':home?'.5':'0');
+    lab.setAttribute('opacity',on||home?'1':'0');
+    lab.setAttribute('fill',on?'#eafff3':'#9fe4c4')});
   const a=places[0],b=places[selected];
   beam.setAttribute('d',(a&&b&&selected!==0)?'M'+a.x+','+a.y+'L'+b.x+','+b.y:'');
 }
